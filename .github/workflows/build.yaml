@@ -2,6 +2,10 @@ name: CI
 
 on:
   push:
+    branches:
+      - master
+    tags:
+      - "*"
 
 env:
   DOCKER_REGISTRY: europe-docker.pkg.dev
@@ -101,7 +105,8 @@ jobs:
       - name: Release
         uses: softprops/action-gh-release@v1
         with:
+          body_path: ".github/RELEASE-TEMPLATE.md"
           draft: true
-          files: /tmp/artifacts
+          files: /tmp/artifacts/*
         env:
           GITHUB_TOKEN: ${{ secrets.GITHUB_TOKEN }}
