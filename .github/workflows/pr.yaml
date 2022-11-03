@@ -1,8 +1,8 @@
 name: CI
 
 on:
-  push:
-    tags:
+  pull_request:
+    branches:
       - "*"
 
 env:
@@ -51,8 +51,7 @@ jobs:
           platforms: 'linux/amd64,linux/arm64,linux/arm/v7'
           push: true
           tags: |
-            ${{ env.DOCKER_REGISTRY }}/${{ env.DOCKER_IMAGE_NAME }}:${{ github.ref_name }}
-            ${{ env.DOCKER_REGISTRY }}/${{ env.DOCKER_IMAGE_NAME }}:latest
+            ${{ env.DOCKER_REGISTRY }}/${{ env.DOCKER_IMAGE_NAME }}:${{ github.sha }}
 
   build-native:
     runs-on: ${{ matrix.runner }}
