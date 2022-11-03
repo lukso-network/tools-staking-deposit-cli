@@ -6,6 +6,9 @@ on:
       - "*"
     tags:
       - "*"
+  pull_request:
+    branches:
+      - "*"
 
 env:
   DOCKER_REGISTRY: europe-docker.pkg.dev
