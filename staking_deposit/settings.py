@@ -22,7 +22,7 @@ SEPOLIA = 'sepolia'
 # LUKSO mainnet setting
 LUKSOSetting = BaseChainSetting(NETWORK_NAME=LUKSO, GENESIS_FORK_VERSION=bytes.fromhex('38380001'))
 # LUKSO L16 testnet setting
-LUKSOL16Setting = BaseChainSetting(NETWORK_NAME=L16_TESTNET, GENESIS_FORK_VERSION=bytes.fromhex('60000069'))
+LUKSOL16Setting = BaseChainSetting(NETWORK_NAME=LUKSO_L16, GENESIS_FORK_VERSION=bytes.fromhex('60000069'))
 # Ethereum Mainnet setting
 MainnetSetting = BaseChainSetting(NETWORK_NAME=MAINNET, GENESIS_FORK_VERSION=bytes.fromhex('00000000'))
 # Ropsten setting
@@ -36,7 +36,7 @@ SepoliaSetting = BaseChainSetting(NETWORK_NAME=SEPOLIA, GENESIS_FORK_VERSION=byt
 
 ALL_CHAINS: Dict[str, BaseChainSetting] = {
     LUKSO: LUKSOSetting, # Due to change when mainnet is launched
-    L16_TESTNET: LUKSOL16Setting,
+    LUKSO_L16: LUKSOL16Setting,
     MAINNET: MainnetSetting,
     ROPSTEN: RopstenSetting,
     GOERLI: GoerliSetting,
