@@ -3,74 +3,76 @@
 <!-- START doctoc generated TOC please keep comment here to allow auto update -->
 <!-- DON'T EDIT THIS SECTION, INSTEAD RE-RUN doctoc TO UPDATE -->
 
-- [Introduction](#introduction)
-- [Tutorial for users](#tutorial-for-users)
-  - [Build requirements](#build-requirements)
-  - [For Linux or MacOS users](#for-linux-or-macos-users)
-    - [File Permissions](#file-permissions)
-    - [Option 1. Download binary executable file](#option-1-download-binary-executable-file)
-      - [Step 1. Installation](#step-1-installation)
-      - [Step 2. Create keys and `deposit_data-*.json`](#step-2-create-keys-and-deposit_data-json)
-        - [language Argument](#language-argument)
-        - [Commands](#commands)
-        - [`new-mnemonic` Arguments](#new-mnemonic-arguments)
-        - [`existing-mnemonic` Arguments](#existing-mnemonic-arguments)
-        - [Successful message](#successful-message)
-    - [Option 2. Build `deposit-cli` with native Python](#option-2-build-deposit-cli-with-native-python)
-      - [Step 0. Python version checking](#step-0-python-version-checking)
-      - [Step 1. Installation](#step-1-installation-1)
-      - [Step 2. Create keys and `deposit_data-*.json`](#step-2-create-keys-and-deposit_data-json-1)
-        - [Language Argument](#language-argument)
-        - [Commands](#commands-1)
-        - [Arguments](#arguments)
-        - [Successful message](#successful-message-1)
-    - [Option 3. Build `deposit-cli` with `virtualenv`](#option-3-build-deposit-cli-with-virtualenv)
-      - [Step 0. Python version checking](#step-0-python-version-checking-1)
-      - [Step 1. Installation](#step-1-installation-2)
-      - [Step 2. Create keys and `deposit_data-*.json`](#step-2-create-keys-and-deposit_data-json-2)
-        - [Language Argument](#language-argument-1)
-        - [Commands](#commands-2)
-        - [Arguments](#arguments-1)
-    - [Option 4. Use Docker image](#option-4-use-docker-image)
-      - [Step 1. Build the docker image](#step-1-build-the-docker-image)
-      - [Step 2. Create keys and `deposit_data-*.json`](#step-2-create-keys-and-deposit_data-json-3)
-        - [Arguments](#arguments-2)
-        - [Successful message](#successful-message-2)
-  - [For Windows users](#for-windows-users)
-    - [Option 1. Download binary executable file](#option-1-download-binary-executable-file-1)
-      - [Step 1. Installation](#step-1-installation-3)
-      - [Step 2. Create keys and `deposit_data-*.json`](#step-2-create-keys-and-deposit_data-json-4)
-        - [Language Argument](#language-argument-2)
-        - [Commands](#commands-3)
-        - [Arguments](#arguments-3)
-    - [Option 2. Build `deposit-cli` with native Python](#option-2-build-deposit-cli-with-native-python-1)
-      - [Step 0. Python version checking](#step-0-python-version-checking-2)
-      - [Step 1. Installation](#step-1-installation-4)
-      - [Step 2. Create keys and `deposit_data-*.json`](#step-2-create-keys-and-deposit_data-json-5)
-        - [Language Argument](#language-argument-3)
-        - [Commands](#commands-4)
-        - [Arguments](#arguments-4)
-    - [Option 3. Build `deposit-cli` with `virtualenv`](#option-3-build-deposit-cli-with-virtualenv-1)
-      - [Step 0. Python version checking](#step-0-python-version-checking-3)
-      - [Step 1. Installation](#step-1-installation-5)
-      - [Step 2. Create keys and `deposit_data-*.json`](#step-2-create-keys-and-deposit_data-json-6)
-        - [Language Argument](#language-argument-4)
-        - [Commands](#commands-5)
-        - [Arguments](#arguments-5)
-- [Development](#development)
-  - [Install basic requirements](#install-basic-requirements)
-  - [Install testing requirements](#install-testing-requirements)
-  - [Run tests](#run-tests)
-  - [Building Binaries](#building-binaries)
-      - [Mac M1 Binaries](#mac-m1-binaries)
+- [staking-deposit-cli](#staking-deposit-cli)
+  - [Introduction](#introduction)
+  - [Tutorial for users](#tutorial-for-users)
+    - [Build requirements](#build-requirements)
+    - [For Linux or MacOS users](#for-linux-or-macos-users)
+      - [File Permissions](#file-permissions)
+      - [Option 1. Download binary executable file](#option-1-download-binary-executable-file)
+        - [Step 1. Installation](#step-1-installation)
+        - [Step 2. Create keys and `deposit_data-*.json`](#step-2-create-keys-and-deposit_data-json)
+          - [language Argument](#language-argument)
+          - [Commands](#commands)
+          - [`new-mnemonic` Arguments](#new-mnemonic-arguments)
+          - [`existing-mnemonic` Arguments](#existing-mnemonic-arguments)
+          - [Successful message](#successful-message)
+      - [Option 2. Build `deposit-cli` with native Python](#option-2-build-deposit-cli-with-native-python)
+        - [Step 0. Python version checking](#step-0-python-version-checking)
+        - [Step 1. Installation](#step-1-installation-1)
+        - [Step 2. Create keys and `deposit_data-*.json`](#step-2-create-keys-and-deposit_data-json-1)
+          - [Language Argument](#language-argument-1)
+          - [Commands](#commands-1)
+          - [Arguments](#arguments)
+          - [Successful message](#successful-message-1)
+      - [Option 3. Build `deposit-cli` with `virtualenv`](#option-3-build-deposit-cli-with-virtualenv)
+        - [Step 0. Python version checking](#step-0-python-version-checking-1)
+        - [Step 1. Installation](#step-1-installation-2)
+        - [Step 2. Create keys and `deposit_data-*.json`](#step-2-create-keys-and-deposit_data-json-2)
+          - [Language Argument](#language-argument-2)
+          - [Commands](#commands-2)
+          - [Arguments](#arguments-1)
+      - [Option 4. Use Docker image](#option-4-use-docker-image)
+        - [Step 1. Build the docker image](#step-1-build-the-docker-image)
+        - [Step 2. Create keys and `deposit_data-*.json`](#step-2-create-keys-and-deposit_data-json-3)
+          - [Arguments](#arguments-2)
+          - [Successful message](#successful-message-2)
+    - [For Windows users](#for-windows-users)
+      - [Option 1. Download binary executable file](#option-1-download-binary-executable-file-1)
+        - [Step 1. Installation](#step-1-installation-3)
+        - [Step 2. Create keys and `deposit_data-*.json`](#step-2-create-keys-and-deposit_data-json-4)
+          - [Language Argument](#language-argument-3)
+          - [Commands](#commands-3)
+          - [Arguments](#arguments-3)
+      - [Option 2. Build `deposit-cli` with native Python](#option-2-build-deposit-cli-with-native-python-1)
+        - [Step 0. Python version checking](#step-0-python-version-checking-2)
+        - [Step 1. Installation](#step-1-installation-4)
+        - [Step 2. Create keys and `deposit_data-*.json`](#step-2-create-keys-and-deposit_data-json-5)
+          - [Language Argument](#language-argument-4)
+          - [Commands](#commands-4)
+          - [Arguments](#arguments-4)
+      - [Option 3. Build `deposit-cli` with `virtualenv`](#option-3-build-deposit-cli-with-virtualenv-1)
+        - [Step 0. Python version checking](#step-0-python-version-checking-3)
+        - [Step 1. Installation](#step-1-installation-5)
+        - [Step 2. Create keys and `deposit_data-*.json`](#step-2-create-keys-and-deposit_data-json-6)
+          - [Language Argument](#language-argument-5)
+          - [Commands](#commands-5)
+          - [Arguments](#arguments-5)
+  - [Development](#development)
+    - [Install basic requirements](#install-basic-requirements)
+    - [Install testing requirements](#install-testing-requirements)
+    - [Run tests](#run-tests)
+    - [Building Binaries](#building-binaries)
+        - [Mac M1 Binaries](#mac-m1-binaries)
 
 <!-- END doctoc generated TOC please keep comment here to allow auto update -->
 
 ## Introduction
 
-`deposit-cli` is a tool for creating [EIP-2335 format](https://eips.ethereum.org/EIPS/eip-2335) BLS12-381 keystores and a corresponding `deposit_data*.json` file for [Ethereum Staking Launchpad](https://github.com/ethereum/staking-launchpad).
+**This is a forked version of [Eth2.0 `deposit-cli` tool](https://github.com/ethereum/eth2.0-deposit-cli) for the LUKSO Blockchain and related test networks.**
 
-It is based on the [Eth2.0 `deposit-cli` tool](https://github.com/ethereum/eth2.0-deposit-cli) with minor adaptations made for the LUKSO network.
+
+`deposit-cli` is a tool for creating [EIP-2335 format](https://eips.ethereum.org/EIPS/eip-2335) BLS12-381 keystores and a corresponding `deposit_data*.json` file for [Ethereum Staking Launchpad](https://github.com/ethereum/staking-launchpad).
 
 - **Warning: Please generate your keystores on your own safe, completely offline device.**
 - **Warning: Please backup your mnemonic, keystores, and password securely.**
@@ -139,7 +141,7 @@ You can use `new-mnemonic --help` to see all arguments. Note that if there are m
 | `--mnemonic_language` | String. Options: `简体中文`, `繁體中文`, `český jazyk`, `English`, `Italiano`, `한국어`, `Português`, `Español`. Default to `English` | The mnemonic language |
 | `--folder` | String. Pointing to `./validator_keys` by default | The folder path for the keystore(s) and deposit(s) |
 | `--chain` | String. `lukso` by default | The chain setting for the signing domain. |
-| `--eth1_withdrawal_address` | String. LUKSO address in hexadecimal encoded form | If this field is set and valid, the given LUKSO address will be used to create the withdrawal credentials. Otherwise, it will generate withdrawal credentials with the mnemonic-derived withdrawal public key in [EIP-2334 format](https://eips.ethereum.org/EIPS/eip-2334#eth2-specific-parameters). |
+| `--eth1_withdrawal_address` | String. LUKSO address (Eth1 adddress) in hexadecimal encoded form | If this field is set and valid, the given LUKSO address (Eth1 address) will be used to create the withdrawal credentials. Otherwise, it will generate withdrawal credentials with the mnemonic-derived withdrawal public key in [EIP-2334 format](https://eips.ethereum.org/EIPS/eip-2334#eth2-specific-parameters). |
 
 ###### `existing-mnemonic` Arguments
 
@@ -151,7 +153,7 @@ You can use `existing-mnemonic --help` to see all arguments. Note that if there 
 | `--num_validators`  | Non-negative integer | The number of new signing keys you want to generate. Note that the child key(s) are generated via the same master key. |
 | `--folder` | String. Pointing to `./validator_keys` by default | The folder path for the keystore(s) and deposit(s) |
 | `--chain` | String. `lukso` by default | The chain setting for the signing domain. |
-| `--eth1_withdrawal_address` | String. LUKSO address in hexadecimal encoded form | If this field is set and valid, the given LUKSO address will be used to create the withdrawal credentials. Otherwise, it will generate withdrawal credentials with the mnemonic-derived withdrawal public key in [EIP-2334 format](https://eips.ethereum.org/EIPS/eip-2334#eth2-specific-parameters). |
+| `--eth1_withdrawal_address` | String. LUKSO address (Eth1 adddress) in hexadecimal encoded form | If this field is set and valid, the given LUKSO address (Eth1 adddress) will be used to create the withdrawal credentials. Otherwise, it will generate withdrawal credentials with the mnemonic-derived withdrawal public key in [EIP-2334 format](https://eips.ethereum.org/EIPS/eip-2334#eth2-specific-parameters). |
 
 ###### Successful message
 
