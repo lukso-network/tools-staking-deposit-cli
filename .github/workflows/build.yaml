@@ -4,7 +4,7 @@ on:
   push:
     branches:
       - master
-      - fix/build-CU-2vtwrea
+      - develop
 
 env:
   DOCKER_REGISTRY: europe-docker.pkg.dev
