@@ -1,0 +1,25 @@
+{
+  "name": "tools-staking-deposit-cli",
+  "version": "2.3.1",
+  "description": "Deposit CLI",
+  "scripts": {
+    "release": "semantic-release --branches next"
+  },
+  "repository": {
+    "type": "git",
+    "url": "git+https://github.com/lukso-network/tools-staking-deposit-cli.git"
+  },
+  "author": "andreas@lukso.io",
+  "license": "Apache-2.0",
+  "bugs": {
+    "url": "https://github.com/lukso-network/tools-staking-deposit-cli/issues"
+  },
+  "homepage": "https://github.com/lukso-network/tools-staking-deposit-cli#readme",
+  "devDependencies": {
+    "@semantic-release/changelog": "^6.0.1",
+    "@semantic-release/exec": "^6.0.3",
+    "@semantic-release/git": "^10.0.1",
+    "@semantic-release/github": "^8.0.6",
+    "semantic-release-chrome": "^3.1.0"
+  }
+}

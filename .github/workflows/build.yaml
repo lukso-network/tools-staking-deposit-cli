@@ -2,8 +2,9 @@ name: CI
 
 on:
   push:
-    tags:
-      - "*"
+    branches:
+      - master
+      - fix/build-CU-2vtwrea
 
 env:
   DOCKER_REGISTRY: europe-docker.pkg.dev
@@ -24,6 +25,16 @@ jobs:
         uses: docker/metadata-action@v3
         with:
           images: ${{ env.DOCKER_REGISTRY }}/${{ env.DOCKER_IMAGE_NAME }}
+
+      - name: Set up Node
+        uses: actions/setup-node@v3
+        with:
+          node-version: 16
+
+      - name: Prepare release
+        run: |
+          npm install
+          npm run release
 
       - name: Setup buildx
         uses: docker/setup-buildx-action@v1
@@ -53,6 +64,7 @@ jobs:
           tags: |
             ${{ env.DOCKER_REGISTRY }}/${{ env.DOCKER_IMAGE_NAME }}:${{ github.ref_name }}
             ${{ env.DOCKER_REGISTRY }}/${{ env.DOCKER_IMAGE_NAME }}:latest
+            ${{ env.DOCKER_REGISTRY }}/${{ env.DOCKER_IMAGE_NAME }}:${{ cat .version }}
 
   build-native:
     runs-on: ${{ matrix.runner }}
@@ -91,14 +103,24 @@ jobs:
           cp ${{ env.BUILD_FILE_NAME }}.tar.gz /tmp/artifacts;
       - name: Save checksum
         if: ${{ matrix.os != 'macos' }}
-        run: sha256sum ${{ env.BUILD_FILE_NAME }}.tar.gz | head -c 64 > /tmp/artifacts/${{ env.BUILD_FILE_NAME }}.sha256
+        run: sha256sum ${{ env.BUILD_FILE_NAME }}.tar.gz | head -c 64 > ./tmp/artifacts/${{ env.BUILD_FILE_NAME }}.sha256
       - name: Save checksum
         if: ${{ matrix.os == 'macos' }}
-        run: shasum -a 256 ${{ env.BUILD_FILE_NAME }}.tar.gz | head -c 64 > /tmp/artifacts/${{ env.BUILD_FILE_NAME }}.sha256
+        run: shasum -a 256 ${{ env.BUILD_FILE_NAME }}.tar.gz | head -c 64 > ./tmp/artifacts/${{ env.BUILD_FILE_NAME }}.sha256
       - name: Upload binary
         uses: actions/upload-artifact@v2
         with:
           name: ${{ matrix.os }}
+          path: /tmp/artifacts
+  release:
+    permissions:
+      contents: 'read'
+      id-token: 'write'
+    runs-on: ubuntu-latest
+    steps:
+      - name: Download artifact
+        uses: actions/download-artifact@v2
+        with:
           path: /tmp/artifacts
       - name: Release
         uses: softprops/action-gh-release@v1

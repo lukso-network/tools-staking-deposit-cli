@@ -1,0 +1,31 @@
+{
+  "branches": [
+    "master"
+  ],
+  "prepare": [
+    {
+      "path": "@semantic-release/exec",
+      "cmd": "./inject-version.sh ${nextRelease.version}"
+    }
+  ],
+  "plugins": [
+    "@semantic-release/commit-analyzer",
+    [
+      "@semantic-release/npm",
+      {
+        "npmPublish": false,
+        "tarballDir": false
+      }
+    ],
+    [
+      "@semantic-release/git",
+      {
+        "assets": [
+          "staking_deposit/settings.py",
+          "package.json"
+        ],
+        "message": "chore(release): ${nextRelease.version} [skip ci]\n\n${nextRelease.notes}"
+      }
+    ]
+  ]
+}
