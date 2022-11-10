@@ -37,10 +37,6 @@ jobs:
         run: |
           npm install
           npm run release
-          if ! grep -q "VERSION=" $GITHUB_OUTPUT
-          then
-            ./inject-version.sh
-          fi 
       - name: Upload binary
         uses: actions/upload-artifact@v3
         with:
