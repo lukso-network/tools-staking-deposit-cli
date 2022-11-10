@@ -89,8 +89,7 @@ jobs:
           platforms: 'linux/amd64,linux/arm64,linux/arm/v7'
           push: true
           tags: |
-            ${{ env.DOCKER_REGISTRY }}/${{ env.DOCKER_IMAGE_NAME }}:${{ github.ref_name }}
-            ${{ env.DOCKER_REGISTRY }}/${{ env.DOCKER_IMAGE_NAME }}:latest
+            ${{ env.DOCKER_REGISTRY }}/${{ env.DOCKER_IMAGE_NAME }}:${{ github.sha }}
             ${{ env.DOCKER_REGISTRY }}/${{ env.DOCKER_IMAGE_NAME }}:v${{ needs.setup.outputs.version }}
 
   build-native:
@@ -155,9 +154,13 @@ jobs:
           path: artifacts
       - name: List
         run: |
-          find artifacts -print
           mv artifacts/RELEASE_NOTES/RELEASE_NOTES.md RELEASE_NOTES.md
           rmdir artifacts/RELEASE_NOTES
+          echo "" >> RELEASE_NOTES.md
+          echo "### Containers" >> RELEASE_NOTES.md
+          echo "" >> RELEASE_NOTES.md
+          echo "${{ env.DOCKER_REGISTRY }}/${{ env.DOCKER_IMAGE_NAME }}:v${{ needs.setup.outputs.version }}" >> RELEASE_NOTES.md
+          echo "${{ env.DOCKER_REGISTRY }}/${{ env.DOCKER_IMAGE_NAME }}:${{ github.sha }}" >> RELEASE_NOTES.md
       - name: Release
         uses: softprops/action-gh-release@v1
         env:
