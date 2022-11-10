@@ -130,7 +130,7 @@ def generate_keys(ctx: click.Context, validator_start_index: int,
                   amount: int, eth1_withdrawal_address: HexAddress, **kwargs: Any) -> None:
     mnemonic = ctx.obj['mnemonic']
     mnemonic_password = ctx.obj['mnemonic_password']
-    amounts = amount * num_validators
+    amounts = [amount] * num_validators
     folder = os.path.join(folder, DEFAULT_VALIDATOR_KEYS_FOLDER_NAME)
     chain_setting = get_chain_setting(chain)
     if not os.path.exists(folder):
