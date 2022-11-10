@@ -155,6 +155,7 @@ jobs:
           path: artifacts
       - name: List
         run: |
+          find artifacts -print
           mv artifacts/RELEASE_NOTES/RELEASE_NOTES.md RELEASE_NOTES.md
           rmdir artifacts/RELEASE_NOTES
       - name: Release
