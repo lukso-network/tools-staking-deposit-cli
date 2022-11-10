@@ -1,9 +1,10 @@
 {
   "name": "tools-staking-deposit-cli",
-  "version": "2.3.1",
+  "version": "2.5.0-develop.8",
+  "private": true,
   "description": "Deposit CLI",
   "scripts": {
-    "release": "semantic-release --branches next"
+    "release": "semantic-release"
   },
   "repository": {
     "type": "git",

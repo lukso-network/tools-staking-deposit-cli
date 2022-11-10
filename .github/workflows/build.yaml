@@ -11,18 +11,17 @@ env:
   DOCKER_IMAGE_NAME: lks-lz-artifacts/docker-deposit-cli/tools-staking-deposit-cli
 
 jobs:
-  build-docker:
-    permissions:
-      contents: 'read'
-      id-token: 'write'
+  setup:
     runs-on: ubuntu-latest
+    outputs:
+      version: ${{ steps.version.outputs.VERSION }}
     steps:
       - name: Checkout repository
-        uses: actions/checkout@v2
+        uses: actions/checkout@v3
 
       - name: Extract metadata (tags, labels) for Docker
         id: meta
-        uses: docker/metadata-action@v3
+        uses: docker/metadata-action@v4
         with:
           images: ${{ env.DOCKER_REGISTRY }}/${{ env.DOCKER_IMAGE_NAME }}
 
@@ -32,9 +31,37 @@ jobs:
           node-version: 16
 
       - name: Prepare release
+        id: version
+        env:
+          GITHUB_TOKEN: ${{ secrets.DEVOPS_GITHUB_TOKEN }}
         run: |
           npm install
           npm run release
+          if ! grep -q "VERSION=" $GITHUB_OUTPUT
+          then
+            ./inject-version.sh
+          fi 
+      - name: Upload binary
+        uses: actions/upload-artifact@v3
+        with:
+          name: RELEASE_NOTES
+          path: /tmp/RELEASE_NOTES.md
+  
+  build-docker:
+    permissions:
+      contents: 'read'
+      id-token: 'write'
+    needs: setup
+    runs-on: ubuntu-latest
+    steps:
+      - name: Checkout repository
+        uses: actions/checkout@v3
+
+      - name: Extract metadata (tags, labels) for Docker
+        id: meta
+        uses: docker/metadata-action@v3
+        with:
+          images: ${{ env.DOCKER_REGISTRY }}/${{ env.DOCKER_IMAGE_NAME }}
 
       - name: Setup buildx
         uses: docker/setup-buildx-action@v1
@@ -64,9 +91,10 @@ jobs:
           tags: |
             ${{ env.DOCKER_REGISTRY }}/${{ env.DOCKER_IMAGE_NAME }}:${{ github.ref_name }}
             ${{ env.DOCKER_REGISTRY }}/${{ env.DOCKER_IMAGE_NAME }}:latest
-            ${{ env.DOCKER_REGISTRY }}/${{ env.DOCKER_IMAGE_NAME }}:${{ cat .version }}
+            ${{ env.DOCKER_REGISTRY }}/${{ env.DOCKER_IMAGE_NAME }}:v${{ needs.setup.outputs.version }}
 
   build-native:
+    needs: setup
     runs-on: ${{ matrix.runner }}
     strategy:
       fail-fast: false
@@ -80,12 +108,13 @@ jobs:
             runner: windows-latest
     env:
       PYTHONHASHSEED: 42
-      BUILD_FILE_NAME: deposit-cli-${{ github.sha }}-${{ matrix.os }}-amd64
+      BUILD_FILE_NAME: deposit-cli-v${{ needs.setup.outputs.version }}-${{ matrix.os }}-amd64
+      VERSION: ${{ needs.setup.outputs.version }}
     steps:
       - name: Checkout repository
-        uses: actions/checkout@v2
+        uses: actions/checkout@v3
       - name: Set up Python
-        uses: actions/setup-python@v2
+        uses: actions/setup-python@v4
         with:
           python-version: 3.8
           architecture: x64
@@ -103,30 +132,38 @@ jobs:
           cp ${{ env.BUILD_FILE_NAME }}.tar.gz /tmp/artifacts;
       - name: Save checksum
         if: ${{ matrix.os != 'macos' }}
-        run: sha256sum ${{ env.BUILD_FILE_NAME }}.tar.gz | head -c 64 > ./tmp/artifacts/${{ env.BUILD_FILE_NAME }}.sha256
+        run: sha256sum ${{ env.BUILD_FILE_NAME }}.tar.gz | head -c 64 > /tmp/artifacts/${{ env.BUILD_FILE_NAME }}.sha256
       - name: Save checksum
         if: ${{ matrix.os == 'macos' }}
-        run: shasum -a 256 ${{ env.BUILD_FILE_NAME }}.tar.gz | head -c 64 > ./tmp/artifacts/${{ env.BUILD_FILE_NAME }}.sha256
+        run: shasum -a 256 ${{ env.BUILD_FILE_NAME }}.tar.gz | head -c 64 > /tmp/artifacts/${{ env.BUILD_FILE_NAME }}.sha256
       - name: Upload binary
-        uses: actions/upload-artifact@v2
+        uses: actions/upload-artifact@v3
         with:
-          name: ${{ matrix.os }}
+          name: ${{ matrix.os }}-v${{ needs.setup.outputs.version }}.zip
           path: /tmp/artifacts
   release:
-    permissions:
-      contents: 'read'
-      id-token: 'write'
+    needs:
+      - build-native
+      - setup
     runs-on: ubuntu-latest
     steps:
+      - name: Checkout repository
+        uses: actions/checkout@v3
       - name: Download artifact
-        uses: actions/download-artifact@v2
+        uses: actions/download-artifact@v3
         with:
-          path: /tmp/artifacts
+          path: artifacts
+      - name: List
+        run: |
+          mv artifacts/RELEASE_NOTES/RELEASE_NOTES.md RELEASE_NOTES.md
+          rmdir artifacts/RELEASE_NOTES
       - name: Release
         uses: softprops/action-gh-release@v1
-        with:
-          body_path: ".github/RELEASE-TEMPLATE.md"
-          draft: true
-          files: /tmp/artifacts/*
         env:
-          GITHUB_TOKEN: ${{ secrets.GITHUB_TOKEN }}
+          GITHUB_TOKEN: ${{ secrets.DEVOPS_GITHUB_TOKEN }}
+        with:
+          draft: true
+          body_path: RELEASE_NOTES.md
+          tag_name: v${{ needs.setup.outputs.version }}
+          files: |
+            artifacts/**/*
