@@ -1,6 +1,7 @@
+![Build](https://github.com/lukso-network/tools-staking-deposit-cli/actions/workflows/build.yaml/badge.svg?branch=master)
+
 # staking-deposit-cli
 
-![Build](https://github.com/github/docs/actions/workflows/build.yaml/badge.svg?branch=master)
 <!-- START doctoc generated TOC please keep comment here to allow auto update -->
 <!-- DON'T EDIT THIS SECTION, INSTEAD RE-RUN doctoc TO UPDATE -->
 
