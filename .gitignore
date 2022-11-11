@@ -11,3 +11,9 @@ venv/
 *.egg
 __pycache__
 .DS_Store
+
+.idea
+
+# Release node stuff
+/node_modules/
+/.DEPOSIT_CLI_VERSION

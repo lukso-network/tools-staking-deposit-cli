@@ -1,0 +1,194 @@
+name: Branch builds
+
+on:
+  push:
+    branches:
+      - master
+      - develop
+
+env:
+  DOCKER_REGISTRY: europe-docker.pkg.dev
+  DOCKER_IMAGE_NAME: lks-lz-artifacts/docker-deposit-cli/tools-staking-deposit-cli
+
+jobs:
+  setup:
+    runs-on: ubuntu-latest
+    outputs:
+      version: ${{ steps.version.outputs.VERSION }}
+    steps:
+      - name: Checkout repository
+        uses: actions/checkout@v3
+        with:
+          token: ${{ secrets.DEVOPS_GITHUB_TOKEN }}
+
+      - name: Extract metadata (tags, labels) for Docker
+        id: meta
+        uses: docker/metadata-action@v4
+        with:
+          images: ${{ env.DOCKER_REGISTRY }}/${{ env.DOCKER_IMAGE_NAME }}
+
+      - name: Set up Node
+        uses: actions/setup-node@v3
+        with:
+          node-version: 16
+
+      - name: Prepare release
+        id: version
+        env:
+          GITHUB_TOKEN: ${{ secrets.DEVOPS_GITHUB_TOKEN }}
+          GH_TOKEN: ${{ secrets.DEVOPS_GITHUB_TOKEN }}
+        run: |
+          npm install
+          npm run release
+      - name: Upload binary
+        uses: actions/upload-artifact@v3
+        with:
+          name: RELEASE_NOTES
+          path: /tmp/RELEASE_NOTES.md
+  
+  build-docker:
+    permissions:
+      contents: 'read'
+      id-token: 'write'
+    needs: setup
+    runs-on: ubuntu-latest
+    steps:
+      - name: Checkout repository
+        uses: actions/checkout@v3
+
+      - name: Extract metadata (tags, labels) for Docker
+        id: meta
+        uses: docker/metadata-action@v3
+        with:
+          images: ${{ env.DOCKER_REGISTRY }}/${{ env.DOCKER_IMAGE_NAME }}
+
+      - name: Setup buildx
+        uses: docker/setup-buildx-action@v1
+
+      - name: Fixup buildx
+        run: docker run --rm --privileged multiarch/qemu-user-static --reset -p yes
+
+      - name: Authenticate to Google Cloud
+        id: gcpauth
+        uses: google-github-actions/auth@v0
+        with:
+          create_credentials_file: "true"
+          workload_identity_provider: "projects/311968610280/locations/global/workloadIdentityPools/github/providers/github"
+          service_account: "artifact-deployer@lks-lz-management.iam.gserviceaccount.com"
+
+      - name: login
+        run: |-
+          gcloud auth login --brief --cred-file="${{ steps.gcpauth.outputs.credentials_file_path }}"
+          gcloud auth configure-docker europe-docker.pkg.dev
+
+      - name: Build and push Docker image
+        uses: docker/build-push-action@v2
+        with:
+          context: .
+          platforms: 'linux/amd64,linux/arm64,linux/arm/v7'
+          push: true
+          tags: |
+            ${{ env.DOCKER_REGISTRY }}/${{ env.DOCKER_IMAGE_NAME }}:${{ github.sha }}
+            ${{ env.DOCKER_REGISTRY }}/${{ env.DOCKER_IMAGE_NAME }}:v${{ needs.setup.outputs.version }}
+
+  build-native:
+    needs: setup
+    runs-on: ${{ matrix.runner }}
+    strategy:
+      fail-fast: false
+      matrix:
+        include:
+          - os: linux
+            runner: ubuntu-latest
+          - os: macos
+            runner: macos-10.15
+          - os: windows
+            runner: windows-latest
+    env:
+      PYTHONHASHSEED: 42
+      BUILD_FILE_NAME: deposit-cli-v${{ needs.setup.outputs.version }}-${{ matrix.os }}-amd64
+      VERSION: ${{ needs.setup.outputs.version }}
+    steps:
+      - name: Checkout repository
+        uses: actions/checkout@v3
+        with:
+          token: ${{ secrets.DEVOPS_GITHUB_TOKEN }}
+      - name: Set up Python
+        uses: actions/setup-python@v4
+        with:
+          python-version: 3.8
+          architecture: x64
+      - name: Install building requirements on ${{ matrix.os }}
+        run: |
+          pip3 install -r ./build_configs/${{ matrix.os }}/requirements.txt;
+      - name: Build with build.spec
+        run: |
+          mkdir ${{ env.BUILD_FILE_NAME }};
+          pyinstaller --distpath ./${{ env.BUILD_FILE_NAME }} ./build_configs/${{ matrix.os }}/build.spec;
+      - name: Compress the file
+        run: |
+          tar -zcvf ${{ env.BUILD_FILE_NAME }}.tar.gz ./${{ env.BUILD_FILE_NAME }};
+          mkdir /tmp/artifacts;
+          cp ${{ env.BUILD_FILE_NAME }}.tar.gz /tmp/artifacts;
+      - name: Save checksum
+        if: ${{ matrix.os != 'macos' }}
+        run: sha256sum ${{ env.BUILD_FILE_NAME }}.tar.gz | head -c 64 > /tmp/artifacts/${{ env.BUILD_FILE_NAME }}.sha256
+      - name: Save checksum
+        if: ${{ matrix.os == 'macos' }}
+        run: shasum -a 256 ${{ env.BUILD_FILE_NAME }}.tar.gz | head -c 64 > /tmp/artifacts/${{ env.BUILD_FILE_NAME }}.sha256
+      - name: Upload binary
+        uses: actions/upload-artifact@v3
+        with:
+          name: ${{ matrix.os }}-v${{ needs.setup.outputs.version }}.zip
+          path: /tmp/artifacts
+  release:
+    needs:
+      - build-native
+      - setup
+    runs-on: ubuntu-latest
+    steps:
+      - name: Checkout repository
+        uses: actions/checkout@v3
+      - name: Download artifact
+        uses: actions/download-artifact@v3
+        with:
+          path: artifacts
+      - name: List
+        run: |
+          mv artifacts/RELEASE_NOTES/RELEASE_NOTES.md RELEASE_NOTES.md
+          rmdir artifacts/RELEASE_NOTES
+          echo "" >> RELEASE_NOTES.md
+          echo "### Containers" >> RELEASE_NOTES.md
+          echo "" >> RELEASE_NOTES.md
+          echo "${{ env.DOCKER_REGISTRY }}/${{ env.DOCKER_IMAGE_NAME }}:v${{ needs.setup.outputs.version }}" >> RELEASE_NOTES.md
+          echo "${{ env.DOCKER_REGISTRY }}/${{ env.DOCKER_IMAGE_NAME }}:${{ github.sha }}" >> RELEASE_NOTES.md
+      - name: Release
+        uses: softprops/action-gh-release@v1
+        env:
+          GITHUB_TOKEN: ${{ secrets.DEVOPS_GITHUB_TOKEN }}
+        with:
+          draft: true
+          body_path: RELEASE_NOTES.md
+          tag_name: v${{ needs.setup.outputs.version }}
+          files: |
+            artifacts/**/*
+  notify:
+    name: 'Submodule Notify Parent'
+    runs-on: ubuntu-latest
+    needs:
+      - setup
+      - release
+
+    env:
+      PARENT_REPO: lukso-network/tools-wagyu-key-gen
+      WORKFLOW_ID: 39950170
+    steps:
+      - name: Github Update develop
+        if: ${{ success() && github.ref == 'refs/heads/master' }}
+        env:
+          PARENT_BRANCH: develop
+        run: |
+          curl -fL --retry 3 -X POST -H "Accept: application/vnd.github.v3+json" \
+            -H "Authorization: token ${{ secrets.DEVOPS_GITHUB_TOKEN }}" \
+            https://api.github.com/repos/${{ env.PARENT_REPO }}/actions/workflows/${{ env.WORKFLOW_ID }}/dispatches \
+            -d '{"ref":"${{ env.PARENT_BRANCH }}"}'
