@@ -10,8 +10,8 @@ class BaseChainSetting(NamedTuple):
 
 
 LUKSO = 'lukso'
-LUKSO_L16 = 'lukso l16'
-MAINNET = 'ethereum mainnet'
+LUKSO_L16 = 'lukso-l16'
+MAINNET = 'ethereum-mainnet'
 ROPSTEN = 'ropsten'
 GOERLI = 'goerli'
 PRATER = 'prater'
