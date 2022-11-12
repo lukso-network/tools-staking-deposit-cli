@@ -1,6 +1,6 @@
 {
   "name": "tools-staking-deposit-cli",
-  "version": "2.3.1-develop.2",
+  "version": "2.3.1-develop.3",
   "private": true,
   "description": "Deposit CLI",
   "scripts": {
