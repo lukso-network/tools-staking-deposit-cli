@@ -65,14 +65,13 @@
     - [Install testing requirements](#install-testing-requirements)
     - [Run tests](#run-tests)
     - [Building Binaries](#building-binaries)
-        - [Mac M1 Binaries](#mac-m1-binaries)
+      - [Mac M1 Binaries](#mac-m1-binaries)
 
 <!-- END doctoc generated TOC please keep comment here to allow auto update -->
 
 ## Introduction
 
 **This is a forked version of [Eth2.0 `deposit-cli` tool](https://github.com/ethereum/eth2.0-deposit-cli) for the LUKSO Blockchain and related test networks.**
-
 
 `deposit-cli` is a tool for creating [EIP-2335 format](https://eips.ethereum.org/EIPS/eip-2335) BLS12-381 keystores and a corresponding `deposit_data*.json` file for [Ethereum Staking Launchpad](https://github.com/ethereum/staking-launchpad).
 
@@ -120,42 +119,42 @@ or run the following command to enter the interactive CLI and generate keys from
 
 The tool offers many language/internationalization options. If you wish to select one as a CLI argument, it must be passed in before one of the commands is chosen.
 
-| Argument | Type | Description |
-| -------- | -------- | -------- |
+| Argument     | Type                                                                                                                                                                             | Description                              |
+| ------------ | -------------------------------------------------------------------------------------------------------------------------------------------------------------------------------- | ---------------------------------------- |
 | `--language` | String. Options: `العربية`, `ελληνικά`, `English`, `Français`, `Bahasa melayu`, `Italiano`, `日本語`, `한국어`, `Português do Brasil`, `român`, `简体中文`. Default to `English` | The language you wish to use the CLI in. |
 
 ###### Commands
 
 The CLI offers different commands depending on what you want to do with the tool.
 
-| Command | Description |
-| ------- | ----------- |
-| `new-mnemonic` | (Recommended) This command is used to generate keystores with a new mnemonic. |
+| Command             | Description                                                                                                                                                                                                                                                                                                                                                     |
+| ------------------- | --------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------- |
+| `new-mnemonic`      | (Recommended) This command is used to generate keystores with a new mnemonic.                                                                                                                                                                                                                                                                                   |
 | `existing-mnemonic` | This command is used to re-generate or derive new keys from your existing mnemonic. Use this command, if (i) you have already generated keys with this CLI before, (ii) you want to reuse your mnemonic that you know is secure that you generated elsewhere (reusing your eth1 mnemonic .etc), or (iii) you lost your keystores and need to recover your keys. |
 
 ###### `new-mnemonic` Arguments
 
 You can use `new-mnemonic --help` to see all arguments. Note that if there are missing arguments that the CLI needs, it will ask you for them.
 
-| Argument | Type | Description |
-| -------- | -------- | -------- |
-| `--num_validators`  | Non-negative integer | The number of signing keys you want to generate. Note that the child key(s) are generated via the same master key. |
-| `--mnemonic_language` | String. Options: `简体中文`, `繁體中文`, `český jazyk`, `English`, `Italiano`, `한국어`, `Português`, `Español`. Default to `English` | The mnemonic language |
-| `--folder` | String. Pointing to `./validator_keys` by default | The folder path for the keystore(s) and deposit(s) |
-| `--chain` | String. `lukso` by default | The chain setting for the signing domain. |
-| `--eth1_withdrawal_address` | String. LUKSO address (Eth1 adddress) in hexadecimal encoded form | If this field is set and valid, the given LUKSO address (Eth1 address) will be used to create the withdrawal credentials. Otherwise, it will generate withdrawal credentials with the mnemonic-derived withdrawal public key in [EIP-2334 format](https://eips.ethereum.org/EIPS/eip-2334#eth2-specific-parameters). |
+| Argument                    | Type                                                                                                                                  | Description                                                                                                                                                                                                                                                                                                          |
+| --------------------------- | ------------------------------------------------------------------------------------------------------------------------------------- | -------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------- |
+| `--num_validators`          | Non-negative integer                                                                                                                  | The number of signing keys you want to generate. Note that the child key(s) are generated via the same master key.                                                                                                                                                                                                   |
+| `--mnemonic_language`       | String. Options: `简体中文`, `繁體中文`, `český jazyk`, `English`, `Italiano`, `한국어`, `Português`, `Español`. Default to `English` | The mnemonic language                                                                                                                                                                                                                                                                                                |
+| `--folder`                  | String. Pointing to `./validator_keys` by default                                                                                     | The folder path for the keystore(s) and deposit(s)                                                                                                                                                                                                                                                                   |
+| `--chain`                   | String. `lukso` by default                                                                                                            | The chain setting for the signing domain. Use `l16` for the LUKSO L16 chain                                                                                                                                                                                                                                          |
+| `--eth1_withdrawal_address` | String. LUKSO address (Eth1 adddress) in hexadecimal encoded form                                                                     | If this field is set and valid, the given LUKSO address (Eth1 address) will be used to create the withdrawal credentials. Otherwise, it will generate withdrawal credentials with the mnemonic-derived withdrawal public key in [EIP-2334 format](https://eips.ethereum.org/EIPS/eip-2334#eth2-specific-parameters). |
 
 ###### `existing-mnemonic` Arguments
 
 You can use `existing-mnemonic --help` to see all arguments. Note that if there are missing arguments that the CLI needs, it will ask you for them.
 
-| Argument | Type | Description |
-| -------- | -------- | -------- |
-| `--validator_start_index` | Non-negative integer | The index of the first validator's keys you wish to generate. If this is your first time generating keys with this mnemonic, use 0. If you have generated keys using this mnemonic before, use the next index from which you want to start generating keys from (eg, if you've generated 4 keys before (keys #0, #1, #2, #3), then enter 4 here.|
-| `--num_validators`  | Non-negative integer | The number of new signing keys you want to generate. Note that the child key(s) are generated via the same master key. |
-| `--folder` | String. Pointing to `./validator_keys` by default | The folder path for the keystore(s) and deposit(s) |
-| `--chain` | String. `lukso` by default | The chain setting for the signing domain. |
-| `--eth1_withdrawal_address` | String. LUKSO address (Eth1 adddress) in hexadecimal encoded form | If this field is set and valid, the given LUKSO address (Eth1 adddress) will be used to create the withdrawal credentials. Otherwise, it will generate withdrawal credentials with the mnemonic-derived withdrawal public key in [EIP-2334 format](https://eips.ethereum.org/EIPS/eip-2334#eth2-specific-parameters). |
+| Argument                    | Type                                                              | Description                                                                                                                                                                                                                                                                                                                                      |
+| --------------------------- | ----------------------------------------------------------------- | ------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------ |
+| `--validator_start_index`   | Non-negative integer                                              | The index of the first validator's keys you wish to generate. If this is your first time generating keys with this mnemonic, use 0. If you have generated keys using this mnemonic before, use the next index from which you want to start generating keys from (eg, if you've generated 4 keys before (keys #0, #1, #2, #3), then enter 4 here. |
+| `--num_validators`          | Non-negative integer                                              | The number of new signing keys you want to generate. Note that the child key(s) are generated via the same master key.                                                                                                                                                                                                                           |
+| `--folder`                  | String. Pointing to `./validator_keys` by default                 | The folder path for the keystore(s) and deposit(s)                                                                                                                                                                                                                                                                                               |
+| `--chain`                   | String. `lukso` by default                                        | The chain setting for the signing domain.                                                                                                                                                                                                                                                                                                        |
+| `--eth1_withdrawal_address` | String. LUKSO address (Eth1 adddress) in hexadecimal encoded form | If this field is set and valid, the given LUKSO address (Eth1 adddress) will be used to create the withdrawal credentials. Otherwise, it will generate withdrawal credentials with the mnemonic-derived withdrawal public key in [EIP-2334 format](https://eips.ethereum.org/EIPS/eip-2334#eth2-specific-parameters).                            |
 
 ###### Successful message
 
@@ -224,6 +223,7 @@ You can also run the tool with optional arguments:
 ###### Language Argument
 
 See [here](#language_argument) for `--language` arguments.
+
 ###### Commands
 
 See [here](#commands)
@@ -234,6 +234,7 @@ See [here](#new-mnemonic-arguments) for `new-mnemonic` arguments
 See [here](#existing-mnemonic-arguments) for `existing-mnemonic` arguments
 
 ###### Successful message
+
 See [here](#successful-message)
 
 #### Option 3. Build `deposit-cli` with `virtualenv`
@@ -331,12 +332,14 @@ docker run -it --rm -v $(pwd)/validator_keys:/app/validator_keys europe-docker.p
 ```
 
 ###### Arguments
+
 See [here](#arguments)
 
 ###### Successful message
+
 See [here](#successful-message)
 
-----
+---
 
 ### For Windows users
 
@@ -531,11 +534,14 @@ python3 -m pytest .
 ```
 
 ### Building Binaries
+
 **Developers Only**
+
 ##### Mac M1 Binaries
 
 👋This is not the section you are looking for.👋
 If you are trying to **build the binary** on macos with an M1 Mac and you are using pyenv to manage your python version. You'll probably need to reinstall a given python version using:
+
 ```
 env PYTHON_CONFIGURE_OPTS="--enable-framework" pyenv install 3.10.3
 ```
