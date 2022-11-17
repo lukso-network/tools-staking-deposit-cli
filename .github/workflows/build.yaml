@@ -3,7 +3,6 @@ name: Branch builds
 on:
   push:
     branches:
-      - master
       - develop
 
 env:
@@ -16,6 +15,14 @@ jobs:
     outputs:
       version: ${{ steps.version.outputs.VERSION }}
     steps:
+      - name: Call Release-Please
+        uses: google-github-actions/release-please-action@v3
+        with:
+          release-type: python
+          package-name: staking_deposit
+          command: release-pr
+          default-branch: master
+          changelog-path: /tmp/RELEASE_NOTES.md
       - name: Checkout repository
         uses: actions/checkout@v3
         with:
@@ -25,20 +32,10 @@ jobs:
         uses: docker/metadata-action@v4
         with:
           images: ${{ env.DOCKER_REGISTRY }}/${{ env.DOCKER_IMAGE_NAME }}
-
       - name: Set up Node
         uses: actions/setup-node@v3
         with:
           node-version: 16
-
-      - name: Prepare release
-        id: version
-        env:
-          GITHUB_TOKEN: ${{ secrets.DEVOPS_GITHUB_TOKEN }}
-          GH_TOKEN: ${{ secrets.DEVOPS_GITHUB_TOKEN }}
-        run: |
-          npm install
-          npm run release
       - name: Upload binary
         uses: actions/upload-artifact@v3
         with:
