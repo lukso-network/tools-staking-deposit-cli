@@ -23,6 +23,7 @@ jobs:
           command: release-pr
           default-branch: master
           changelog-path: /tmp/RELEASE_NOTES.md
+          bootstrap-sha: 54b402800ef305edbd114abab3eba05f02e7b347
       - name: Checkout repository
         uses: actions/checkout@v3
         with:
