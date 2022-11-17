@@ -21,7 +21,7 @@ jobs:
           release-type: python
           package-name: staking_deposit
           command: release-pr
-          default-branch: master
+          default-branch: develop
           changelog-path: /tmp/RELEASE_NOTES.md
           bootstrap-sha: 54b402800ef305edbd114abab3eba05f02e7b347
       - name: Checkout repository
