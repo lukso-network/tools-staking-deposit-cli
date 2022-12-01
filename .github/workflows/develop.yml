@@ -1,0 +1,23 @@
+on:
+  pull_request:
+    branches:
+      - develop
+
+name: develop build
+jobs:
+  get-version:
+    runs-on: ubuntu-latest
+    outputs:
+      tag_name: ${{ steps.version.outputs.tag_name }}
+    steps:
+      - uses: actions/checkout@master
+      - id: version
+        run: echo "tag_name=v$(node -pe 'require("./.release-please-manifest.json")["."]')-dev" >> $GITHUB_OUTPUT
+
+  build-job:
+    uses: ./.github/workflows/artifacts.yml
+    needs: get-version
+    with:
+      sha: ${{ github.sha }}
+      ref: ${{ github.ref }}
+      tag_name: ${{ needs.get-version.outputs.tag_name }}
