@@ -1,5 +1,12 @@
 # Changelog
 
+## [2.4.6](https://github.com/lukso-network/tools-staking-deposit-cli/compare/v2.4.5...v2.4.6) (2023-01-27)
+
+
+### Bug Fixes
+
+* Genesis fork version should be 0x20220001 ([#16](https://github.com/lukso-network/tools-staking-deposit-cli/issues/16)) ([2f79b53](https://github.com/lukso-network/tools-staking-deposit-cli/commit/2f79b5325ba5a8fb30607e932b0363f644f9d2bc))
+
 ## [2.4.5](https://github.com/lukso-network/tools-staking-deposit-cli/compare/v2.4.4...v2.4.5) (2023-01-23)
 
 
