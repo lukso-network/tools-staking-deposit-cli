@@ -18,7 +18,7 @@ on:
 
 env:
   DOCKER_REGISTRY: europe-docker.pkg.dev
-  DOCKER_IMAGE_NAME: lks-lz-artifacts/docker-deposit-cli/tools-staking-deposit-cli
+  DOCKER_IMAGE_NAME: lks-lz-artifacts/docker-deposit-cli/tools-key-gen-cli
 
 name: build artifacts
 jobs:
