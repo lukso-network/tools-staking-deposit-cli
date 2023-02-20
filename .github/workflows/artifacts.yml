@@ -18,7 +18,7 @@ on:
 
 env:
   DOCKER_REGISTRY: europe-docker.pkg.dev
-  DOCKER_IMAGE_NAME: lks-lz-artifacts/docker-deposit-cli/tools-key-gen-cli
+  DOCKER_IMAGE_NAME: lks-lz-artifacts/docker-key-gen-cli/lukso-key-gen-cli
 
 name: build artifacts
 jobs:
@@ -76,7 +76,8 @@ jobs:
             runner: windows-latest
     env:
       PYTHONHASHSEED: 42
-      BUILD_FILE_NAME: deposit-cli-${{ inputs.tag_name }}-${{ matrix.os }}-amd64
+      EXE_FILE_NAME: lukso-key-gen-cli
+      BUILD_FILE_NAME: lukso-key-gen-cli-${{ inputs.tag_name }}-${{ matrix.os }}-amd64
     steps:
       - name: Checkout ${{ inputs.sha }}
         uses: actions/checkout@master
@@ -93,10 +94,10 @@ jobs:
       - name: Build with build.spec
         run: |
           mkdir ${{ env.BUILD_FILE_NAME }};
-          pyinstaller --distpath ./${{ env.BUILD_FILE_NAME }} ./build_configs/${{ matrix.os }}/build.spec;
+          pyinstaller --distpath ./${{ env.EXE_FILE_NAME }} ./build_configs/${{ matrix.os }}/build.spec;
       - name: Compress the file
         run: |
-          tar -zcvf ${{ env.BUILD_FILE_NAME }}.tar.gz ./${{ env.BUILD_FILE_NAME }};
+          tar -zcvf ${{ env.BUILD_FILE_NAME }}.tar.gz ./${{ env.EXE_FILE_NAME }};
           mkdir /tmp/artifacts;
           cp ${{ env.BUILD_FILE_NAME }}.tar.gz /tmp/artifacts;
       - name: Save checksum
