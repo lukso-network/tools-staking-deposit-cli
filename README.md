@@ -1,4 +1,4 @@
-![Build](https://github.com/lukso-network/tools-staking-deposit-cli/actions/workflows/build.yaml/badge.svg?branch=master)
+![Build](https://github.com/lukso-network/tools-key-gen-cli/actions/workflows/build.yaml/badge.svg?branch=master)
 
 # staking-deposit-cli
 
@@ -99,20 +99,20 @@ On Unix-based systems, keystores and the `deposit_data*.json` have `440`/`-r--r-
 
 ##### Step 1. Installation
 
-See [releases page](https://github.com/lukso-network/tools-staking-deposit-cli/releases) to download and decompress the corresponding binary files.
+See [releases page](https://github.com/lukso-network/tools-key-gen-cli/releases) to download and decompress the corresponding binary files.
 
 ##### Step 2. Create keys and `deposit_data-*.json`
 
 Run the following command to enter the interactive CLI and generate keys from a new mnemonic:
 
 ```sh
-./deposit new-mnemonic
+./lukso-key-gen new-mnemonic
 ```
 
 or run the following command to enter the interactive CLI and generate keys from an existing:
 
 ```sh
-./deposit existing-mnemonic
+./lukso-key-gen existing-mnemonic
 ```
 
 ###### language Argument
@@ -318,19 +318,19 @@ make build_docker
 Run the following command to enter the interactive CLI:
 
 ```sh
-docker run -it --rm -v $(pwd)/validator_keys:/app/validator_keys europe-docker.pkg.dev/lks-lz-artifacts/docker-deposit-cli
+docker run -it --rm -v $(pwd)/validator_keys:/app/validator_keys europe-docker.pkg.dev/lks-lz-artifacts/docker-key-gen-cli/lukso-key-gen-cli
 ```
 
 You can also run the tool with optional arguments:
 
 ```sh
-docker run -it --rm -v $(pwd)/validator_keys:/app/validator_keys europe-docker.pkg.dev/lks-lz-artifacts/docker-deposit-cli new-mnemonic --num_validators=<NUM_VALIDATORS> --mnemonic_language=english --folder=<YOUR_FOLDER_PATH>
+docker run -it --rm -v $(pwd)/validator_keys:/app/validator_keys europe-docker.pkg.dev/lks-lz-artifacts/docker-key-gen-cli/lukso-key-gen-cli new-mnemonic --num_validators=<NUM_VALIDATORS> --mnemonic_language=english --folder=<YOUR_FOLDER_PATH>
 ```
 
 Example for 1 validator on the [Prater testnet](https://prater.launchpad.ethereum.org/) using english:
 
 ```sh
-docker run -it --rm -v $(pwd)/validator_keys:/app/validator_keys europe-docker.pkg.dev/lks-lz-artifacts/docker-deposit-cli new-mnemonic --num_validators=1 --mnemonic_language=english --chain=prater
+docker run -it --rm -v $(pwd)/validator_keys:/app/validator_keys europe-docker.pkg.dev/lks-lz-artifacts/docker-key-gen-cli/lukso-key-gen-cli new-mnemonic --num_validators=1 --mnemonic_language=english --chain=prater
 ```
 
 ###### Arguments
@@ -349,7 +349,7 @@ See [here](#successful-message)
 
 ##### Step 1. Installation
 
-See [releases page](https://github.com/lukso-network/tools-staking-deposit-cli/releases) to download and decompress the corresponding binary files.
+See [releases page](https://github.com/lukso-network/tools-key-gen-cli/releases) to download and decompress the corresponding binary files.
 
 ##### Step 2. Create keys and `deposit_data-*.json`
 
