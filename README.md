@@ -318,19 +318,19 @@ make build_docker
 Run the following command to enter the interactive CLI:
 
 ```sh
-docker run -it --rm -v $(pwd)/validator_keys:/app/validator_keys europe-docker.pkg.dev/lks-lz-artifacts/docker-key-gen-cli
+docker run -it --rm -v $(pwd)/validator_keys:/app/validator_keys europe-docker.pkg.dev/lks-lz-artifacts/docker-key-gen-cli/lukso-key-gen-cli
 ```
 
 You can also run the tool with optional arguments:
 
 ```sh
-docker run -it --rm -v $(pwd)/validator_keys:/app/validator_keys europe-docker.pkg.dev/lks-lz-artifacts/docker-key-gen-cli new-mnemonic --num_validators=<NUM_VALIDATORS> --mnemonic_language=english --folder=<YOUR_FOLDER_PATH>
+docker run -it --rm -v $(pwd)/validator_keys:/app/validator_keys europe-docker.pkg.dev/lks-lz-artifacts/docker-key-gen-cli/lukso-key-gen-cli new-mnemonic --num_validators=<NUM_VALIDATORS> --mnemonic_language=english --folder=<YOUR_FOLDER_PATH>
 ```
 
 Example for 1 validator on the [Prater testnet](https://prater.launchpad.ethereum.org/) using english:
 
 ```sh
-docker run -it --rm -v $(pwd)/validator_keys:/app/validator_keys europe-docker.pkg.dev/lks-lz-artifacts/docker-key-gen-cli new-mnemonic --num_validators=1 --mnemonic_language=english --chain=prater
+docker run -it --rm -v $(pwd)/validator_keys:/app/validator_keys europe-docker.pkg.dev/lks-lz-artifacts/docker-key-gen-cli/lukso-key-gen-cli new-mnemonic --num_validators=1 --mnemonic_language=english --chain=prater
 ```
 
 ###### Arguments
