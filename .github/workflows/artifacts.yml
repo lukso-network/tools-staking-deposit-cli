@@ -97,7 +97,7 @@ jobs:
           pyinstaller --distpath ./${{ env.BUILD_FILE_NAME }} ./build_configs/${{ matrix.os }}/build.spec;
       - name: Compress the file
         run: |
-          (cd "${{ env.BUILD_FILE_NAME }}" && tar -zcvf "../${{ env.BUILD_FILE_NAME }}.tar.gz" *)
+          tar -zcvf ${{ env.BUILD_FILE_NAME }}.tar.gz ./${{ env.BUILD_FILE_NAME }};
           mkdir /tmp/artifacts;
           cp ${{ env.BUILD_FILE_NAME }}.tar.gz /tmp/artifacts;
       - name: Save checksum
