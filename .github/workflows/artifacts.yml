@@ -52,7 +52,8 @@ jobs:
         run: |-
           gcloud auth login --brief --cred-file="${{ steps.gcpauth.outputs.credentials_file_path }}"
           gcloud auth configure-docker ${{ env.DOCKER_REGISTRY }}
-      - name: Build and push Docker image
+      - name: Build and push Docker image (dev)
+        if: ${{ inputs.release_created == 'false' }}
         uses: docker/build-push-action@v3
         with:
           context: .
@@ -61,6 +62,17 @@ jobs:
           tags: |
             ${{ env.DOCKER_REGISTRY }}/${{ env.DOCKER_IMAGE_NAME }}:${{ inputs.sha }}
             ${{ env.DOCKER_REGISTRY }}/${{ env.DOCKER_IMAGE_NAME }}:${{ inputs.tag_name }}
+      - name: Build and push Docker image (release)
+        if: ${{ inputs.release_created == 'true' }}
+        uses: docker/build-push-action@v3
+        with:
+          context: .
+          platforms: "linux/amd64,linux/arm64,linux/arm/v7"
+          push: true
+          tags: |
+            ${{ env.DOCKER_REGISTRY }}/${{ env.DOCKER_IMAGE_NAME }}:${{ inputs.sha }}
+            ${{ env.DOCKER_REGISTRY }}/${{ env.DOCKER_IMAGE_NAME }}:${{ inputs.tag_name }}
+            ${{ env.DOCKER_REGISTRY }}/${{ env.DOCKER_IMAGE_NAME }}:latest
 
   build-native:
     runs-on: ${{ matrix.runner }}
