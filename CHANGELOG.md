@@ -1,5 +1,12 @@
 # Changelog
 
+## [2.4.7](https://github.com/lukso-network/tools-key-gen-cli/compare/v2.4.6...v2.4.7) (2023-02-21)
+
+
+### Bug Fixes
+
+* Change repo name ([#18](https://github.com/lukso-network/tools-key-gen-cli/issues/18)) ([94507a6](https://github.com/lukso-network/tools-key-gen-cli/commit/94507a6bc84c0893d0dbb116b6948b3d7928946d))
+
 ## [2.4.6](https://github.com/lukso-network/tools-staking-deposit-cli/compare/v2.4.5...v2.4.6) (2023-01-27)
 
 
