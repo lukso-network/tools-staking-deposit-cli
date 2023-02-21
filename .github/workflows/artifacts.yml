@@ -94,10 +94,10 @@ jobs:
       - name: Build with build.spec
         run: |
           mkdir ${{ env.BUILD_FILE_NAME }};
-          pyinstaller --distpath ./${{ env.EXE_FILE_NAME }} ./build_configs/${{ matrix.os }}/build.spec;
+          pyinstaller --distpath ./${{ env.BUILD_FILE_NAME }} ./build_configs/${{ matrix.os }}/build.spec;
       - name: Compress the file
         run: |
-          tar -zcvf ${{ env.BUILD_FILE_NAME }}.tar.gz ./${{ env.EXE_FILE_NAME }};
+          (cd "${{ env.BUILD_FILE_NAME }} && tar -zcvf ../${{ env.BUILD_FILE_NAME }}.tar.gz *)
           mkdir /tmp/artifacts;
           cp ${{ env.BUILD_FILE_NAME }}.tar.gz /tmp/artifacts;
       - name: Save checksum
