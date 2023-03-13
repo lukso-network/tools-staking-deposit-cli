@@ -1,5 +1,12 @@
 # Changelog
 
+## [2.5.0](https://github.com/lukso-network/tools-key-gen-cli/compare/v2.4.7...v2.5.0) (2023-03-13)
+
+
+### Features
+
+* added testnet and mainnet fork version ([e4c8298](https://github.com/lukso-network/tools-key-gen-cli/commit/e4c82987e1efd8c42430f09a2c8c3c14c9f5e611))
+
 ## [2.4.7](https://github.com/lukso-network/tools-key-gen-cli/compare/v2.4.6...v2.4.7) (2023-02-21)
 
 
