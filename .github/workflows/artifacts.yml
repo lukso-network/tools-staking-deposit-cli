@@ -83,27 +83,48 @@ jobs:
           - os: linux
             runner: ubuntu-20.04
           - os: macos
-            runner: macos-10.15
+            runner: macos-latest
           - os: windows
             runner: windows-latest
     env:
       PYTHONHASHSEED: 42
       EXE_FILE_NAME: lukso-key-gen-cli
-      BUILD_FILE_NAME: lukso-key-gen-cli-${{ inputs.tag_name }}-${{ matrix.os }}-amd64
+      BUILD_FILE_NAME: lukso-key-gen-cli-${{ inputs.tag_name }}-${{ matrix.os }}
     steps:
       - name: Checkout ${{ inputs.sha }}
         uses: actions/checkout@master
         with:
           ref: ${{ inputs.sha }}
       - name: Set up Python
+        if: ${{ matrix.os != 'macos' }}
         uses: actions/setup-python@v4
         with:
           python-version: 3.8
           architecture: x64
+      - name: Set up Python
+        if: ${{ matrix.os == 'macos' }}
+        uses: actions/setup-python@v4
+        with:
+          python-version: "3.11"
+      - name: Install and build universal2 requirements on macos
+        if: ${{ matrix.os == 'macos' }}
+        run: |
+          export ARCHFLAGS='-arch arm64 -arch x86_64'
+          VERSION=$(sed -n -e 's#\(pycryptodome==[^ ]*\).*#\1#gp' ./requirements.txt)
+          echo $VERSION
+          rm -rf ./build/pytemps
+          mkdir -p ./build/pytemps
+          python3 -m pip cython
+          python3 -m pip install $VERSION --no-binary :all: --target ./build/pytemps
+          python3 -m pip -r ./build_configs/macos/requirements.txt --target ./build/pytemps
+          export PYTHONPATH=./build/pytemps:.:$(python3 -c "import sys;print(':'.join(sys.path))")
+          pyinstaller --distpath ./${{ env.BUILD_FILE_NAME }} ./build_configs/macos/build.spec;
       - name: Install building requirements on ${{ matrix.os }}
+        if: ${{ matrix.os != 'macos' }}
         run: |
           pip3 install -r ./build_configs/${{ matrix.os }}/requirements.txt;
       - name: Build with build.spec
+        if: ${{ matrix.os != 'macos' }}
         run: |
           mkdir ${{ env.BUILD_FILE_NAME }};
           pyinstaller --distpath ./${{ env.BUILD_FILE_NAME }} ./build_configs/${{ matrix.os }}/build.spec;
