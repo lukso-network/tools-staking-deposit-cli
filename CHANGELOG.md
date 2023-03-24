@@ -1,5 +1,18 @@
 # Changelog
 
+## [2.5.1](https://github.com/lukso-network/tools-key-gen-cli/compare/v2.5.0...v2.5.1) (2023-03-24)
+
+
+### Bug Fixes
+
+* . instead of slash ([7c9a0af](https://github.com/lukso-network/tools-key-gen-cli/commit/7c9a0afb9cdfbd51ed6f0b5197c299f548660613))
+* Adjust some indirect dependencies ([979a1a1](https://github.com/lukso-network/tools-key-gen-cli/commit/979a1a1137d02e835219b1942b20827e20bce168))
+* missing install keyword ([5d1ca50](https://github.com/lukso-network/tools-key-gen-cli/commit/5d1ca506c0ab76ae8a2c5fc7ee1878cbf64b7a4e))
+* Network names. ([707924f](https://github.com/lukso-network/tools-key-gen-cli/commit/707924f4249debe17fbb551d3aef76180f9d714e))
+* Remotely the bin folder cannot be used in pytemps. ([450c982](https://github.com/lukso-network/tools-key-gen-cli/commit/450c982ac40fb49bf6f37c968828c95da2bd30d8))
+* Requirement path still wrong. ([a937dde](https://github.com/lukso-network/tools-key-gen-cli/commit/a937dde9248315f0ca72ee88491105e58f99261d))
+* Restart migration to universal build. ([5997957](https://github.com/lukso-network/tools-key-gen-cli/commit/5997957798588fa59483782e0752321c43153e9a))
+
 ## [2.5.0](https://github.com/lukso-network/tools-key-gen-cli/compare/v2.4.7...v2.5.0) (2023-03-13)
 
 
