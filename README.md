@@ -1,11 +1,9 @@
-![Build](https://github.com/lukso-network/tools-key-gen-cli/actions/workflows/build.yaml/badge.svg?branch=master)
-
-# staking-deposit-cli
+# LUKSO key-gen-cli
 
 <!-- START doctoc generated TOC please keep comment here to allow auto update -->
 <!-- DON'T EDIT THIS SECTION, INSTEAD RE-RUN doctoc TO UPDATE -->
 
-- [staking-deposit-cli](#staking-deposit-cli)
+- [LUKSO key-gen-cli](#lukso-key-gen-cli)
   - [Introduction](#introduction)
   - [Tutorial for users](#tutorial-for-users)
     - [Build requirements](#build-requirements)
