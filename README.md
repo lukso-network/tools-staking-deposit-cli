@@ -1,11 +1,9 @@
-![Build](https://github.com/lukso-network/tools-key-gen-cli/actions/workflows/build.yaml/badge.svg?branch=master)
-
-# staking-deposit-cli
+# LUKSO key-gen-cli
 
 <!-- START doctoc generated TOC please keep comment here to allow auto update -->
 <!-- DON'T EDIT THIS SECTION, INSTEAD RE-RUN doctoc TO UPDATE -->
 
-- [staking-deposit-cli](#staking-deposit-cli)
+- [LUKSO key-gen-cli](#lukso-key-gen-cli)
   - [Introduction](#introduction)
   - [Tutorial for users](#tutorial-for-users)
     - [Build requirements](#build-requirements)
@@ -141,7 +139,7 @@ You can use `new-mnemonic --help` to see all arguments. Note that if there are m
 | `--num_validators`    | Non-negative integer                                                                                                                  | The number of signing keys you want to generate. Note that the child key(s) are generated via the same master key.                                                                                                                   |
 | `--mnemonic_language` | String. Options: `简体中文`, `繁體中文`, `český jazyk`, `English`, `Italiano`, `한국어`, `Português`, `Español`. Default to `English` | The mnemonic language                                                                                                                                                                                                                |
 | `--folder`            | String. Pointing to `./validator_keys` by default                                                                                     | The folder path for the keystore(s) and deposit(s)                                                                                                                                                                                   |
-| `--chain`             | String. `lukso` by default                                                                                                            | The chain setting for the signing domain. `lukso`: LUKSO mainnet, `l16`: LUKSO L16 testnet, `ethereum`: Ethereum Mainnet, `ropsten`: Ropsten, `goerli`, `prater`: Goerli, `kiln`: Merge Testnet (spec v1.1.9), or `sepolia`: Sepolia |
+| `--chain`             | String. `lukso` by default                                                                                                            | The chain setting for the signing domain. `lukso`: LUKSO mainnet, `lukso-testnet`: LUKSO testnet, `ethereum`: Ethereum Mainnet, `ropsten`: Ropsten, `goerli`, `prater`: Goerli, `kiln`: Merge Testnet (spec v1.1.9), or `sepolia`: Sepolia |
 
 |
 | `--eth1_withdrawal_address` | String. LUKSO address (Eth1 adddress) in hexadecimal encoded form | If this field is set and valid, the given LUKSO address (Eth1 address) will be used to create the withdrawal credentials. Otherwise, it will generate withdrawal credentials with the mnemonic-derived withdrawal public key in [EIP-2334 format](https://eips.ethereum.org/EIPS/eip-2334#eth2-specific-parameters). |
@@ -155,7 +153,7 @@ You can use `existing-mnemonic --help` to see all arguments. Note that if there 
 | `--validator_start_index`   | Non-negative integer                                              | The index of the first validator's keys you wish to generate. If this is your first time generating keys with this mnemonic, use 0. If you have generated keys using this mnemonic before, use the next index from which you want to start generating keys from (eg, if you've generated 4 keys before (keys #0, #1, #2, #3), then enter 4 here. |
 | `--num_validators`          | Non-negative integer                                              | The number of new signing keys you want to generate. Note that the child key(s) are generated via the same master key.                                                                                                                                                                                                                           |
 | `--folder`                  | String. Pointing to `./validator_keys` by default                 | The folder path for the keystore(s) and deposit(s)                                                                                                                                                                                                                                                                                               |
-| `--chain`                   | String. `lukso` by default                                        | The chain setting for the signing domain. `lukso`: LUKSO mainnet, `l16`: LUKSO L16 testnet, `ethereum`: Ethereum Mainnet, `ropsten`: Ropsten, `goerli`, `prater`: Goerli, `kiln`: Merge Testnet (spec v1.1.9), or `sepolia`: Sepolia                                                                                                             |
+| `--chain`                   | String. `lukso` by default                                        | The chain setting for the signing domain. `lukso`: LUKSO mainnet, `lukso-testnet`: LUKSO testnet, `ethereum`: Ethereum Mainnet, `ropsten`: Ropsten, `goerli`, `prater`: Goerli, `kiln`: Merge Testnet (spec v1.1.9), or `sepolia`: Sepolia                                                                                                             |
 | `--eth1_withdrawal_address` | String. LUKSO address (Eth1 adddress) in hexadecimal encoded form | If this field is set and valid, the given LUKSO address (Eth1 adddress) will be used to create the withdrawal credentials. Otherwise, it will generate withdrawal credentials with the mnemonic-derived withdrawal public key in [EIP-2334 format](https://eips.ethereum.org/EIPS/eip-2334#eth2-specific-parameters).                            |
 
 ###### Successful message
