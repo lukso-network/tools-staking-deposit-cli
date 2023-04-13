@@ -1,5 +1,12 @@
 # Changelog
 
+## [2.5.2](https://github.com/lukso-network/tools-key-gen-cli/compare/v2.5.1...v2.5.2) (2023-04-13)
+
+
+### Bug Fixes
+
+* Remove unused networks (signed commit) ([a957cbc](https://github.com/lukso-network/tools-key-gen-cli/commit/a957cbcf3ce9d0ce5ce77ec2def561e01a8c0cb6))
+
 ## [2.5.1](https://github.com/lukso-network/tools-key-gen-cli/compare/v2.5.0...v2.5.1) (2023-03-24)
 
 
