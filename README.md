@@ -63,7 +63,6 @@
     - [Install testing requirements](#install-testing-requirements)
     - [Run tests](#run-tests)
     - [Building Binaries](#building-binaries)
-      - [Mac M1 Binaries](#mac-m1-binaries)
 
 <!-- END doctoc generated TOC please keep comment here to allow auto update -->
 
@@ -113,13 +112,21 @@ or run the following command to enter the interactive CLI and generate keys from
 ./lukso-key-gen existing-mnemonic
 ```
 
-###### language Argument
+###### `language` Argument
 
 The tool offers many language/internationalization options. If you wish to select one as a CLI argument, it must be passed in before one of the commands is chosen.
 
 | Argument     | Type                                                                                                                                                                             | Description                              |
 | ------------ | -------------------------------------------------------------------------------------------------------------------------------------------------------------------------------- | ---------------------------------------- |
 | `--language` | String. Options: `العربية`, `ελληνικά`, `English`, `Français`, `Bahasa melayu`, `Italiano`, `日本語`, `한국어`, `Português do Brasil`, `român`, `简体中文`. Default to `English` | The language you wish to use the CLI in. |
+
+###### `--non_interactive` flag
+
+**Warning: with this flag, there will be no confirmation step(s) to verify the input value(s). Please use it carefully.**
+
+| Argument | Type | Description |
+| -------- | -------- | -------- |
+| `--non_interactive` | Flag | Run CLI in non-interactive mode. |
 
 ###### Commands
 
@@ -170,6 +177,22 @@ Verifying your deposits:          [####################################]  <N>/<N
 Success!
 Your keys can be found at: <YOUR_FOLDER_PATH>
 ```
+
+###### `generate-bls-to-execution-change` Arguments 
+
+You can use `bls-to-execution-change --help` to see all arguments. Note that if there are missing arguments that the CLI needs, it will ask you for them.
+
+| Argument | Type | Description |
+| -------- | -------- | -------- |
+| `--bls_to_execution_changes_folder` | String. Pointing to `./bls_to_execution_changes` by default | The folder path for the `bls_to_execution_change-*` JSON file(s) |
+| `--chain` | String. `mainnet` by default | The chain setting for the signing domain. |
+| `--mnemonic` | String. mnemonic split by space.  | The mnemonic you used to create withdrawal credentials. |
+| `--mnemonic_password` | Optional string. Empty by default. | The mnemonic password you used in your key generation. Note: It's not the keystore password. |
+| `--validator_start_index` | Non-negative integer | The index position for the keys to start generating withdrawal credentials in [ERC-2334 format](https://eips.ethereum.org/EIPS/eip-2334#eth2-specific-parameters). |
+| `--validator_indices` | String of integer(s) | A list of the chosen validator index number(s) as identified on the beacon chain. Split multiple items with whitespaces or commas. |
+| `--bls_withdrawal_credentials_list` | String of hexstring(s). | A list of the old BLS withdrawal credentials of the given validator(s). It is for confirming you are using the correct keys. Split multiple items with whitespaces or commas. |
+| `--execution_address` (or `--eth1_withdrawal_address`) | String. Eth1 address in hexadecimal encoded form | If this field is set and valid, the given Eth1 address will be used to create the withdrawal credentials. Otherwise, it will generate withdrawal credentials with the mnemonic-derived withdrawal public key in [ERC-2334 format](https://eips.ethereum.org/EIPS/eip-2334#eth2-specific-parameters). |
+| `--devnet_chain_setting` | String. JSON string `'{"network_name": "<NETWORK_NAME>", "genesis_fork_version": "<GENESIS_FORK_VERSION>", "genesis_validator_root": "<GENESIS_VALIDATOR_ROOT>"}'` | The custom chain setting of a devnet or testnet. Note that it will override your `--chain` choice. |
 
 #### Option 2. Build `deposit-cli` with native Python
 
@@ -232,6 +255,7 @@ See [here](#commands)
 
 See [here](#new-mnemonic-arguments) for `new-mnemonic` arguments
 See [here](#existing-mnemonic-arguments) for `existing-mnemonic` arguments
+See [here](#generate-bls-to-execution-change-arguments) for `generate-bls-to-execution-change` arguments
 
 ###### Successful message
 
@@ -300,6 +324,7 @@ See [here](#commands)
 
 See [here](#new-mnemonic-arguments) for `new-mnemonic` arguments
 See [here](#existing-mnemonic-arguments) for `existing-mnemonic` arguments
+See [here](#generate-bls-to-execution-change-arguments) for `generate-bls-to-execution-change` arguments
 
 #### Option 4. Use Docker image
 
@@ -385,6 +410,7 @@ See [here](#commands)
 
 See [here](#new-mnemonic-arguments) for `new-mnemonic` arguments
 See [here](#existing-mnemonic-arguments) for `existing-mnemonic` arguments
+See [here](#generate-bls-to-execution-change-arguments) for `generate-bls-to-execution-change` arguments
 
 #### Option 2. Build `deposit-cli` with native Python
 
@@ -447,6 +473,7 @@ See [here](#commands)
 
 See [here](#new-mnemonic-arguments) for `new-mnemonic` arguments
 See [here](#existing-mnemonic-arguments) for `existing-mnemonic` arguments
+See [here](#generate-bls-to-execution-change-arguments) for `generate-bls-to-execution-change` arguments
 
 #### Option 3. Build `deposit-cli` with `virtualenv`
 
@@ -511,6 +538,7 @@ See [here](#commands)
 
 See [here](#new-mnemonic-arguments) for `new-mnemonic` arguments
 See [here](#existing-mnemonic-arguments) for `existing-mnemonic` arguments
+See [here](#generate-bls-to-execution-change-arguments) for `generate-bls-to-execution-change` arguments
 
 ## Development
 
