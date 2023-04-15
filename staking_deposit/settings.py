@@ -1,7 +1,11 @@
 from typing import Dict, NamedTuple
 from .version import __version__
+from eth_utils import decode_hex
 
 DEPOSIT_CLI_VERSION = __version__
+
+# FIXME: use the real testnet genesis_validators_root
+GENESIS_VALIDATORS_ROOT_STUB = bytes.fromhex('4b363db94e286120d76eb905340fdd4e54bfe9f06bf33ff6cf5ad27f511bfe95')
 
 
 class BaseChainSetting(NamedTuple):
@@ -20,10 +24,12 @@ ZHEJIANG = 'zhejiang'
 
 # LUKSO mainnet setting
 LUKSOSetting = BaseChainSetting(
-    NETWORK_NAME=LUKSO, GENESIS_FORK_VERSION=bytes.fromhex('42000001'))
+    NETWORK_NAME=LUKSO, GENESIS_FORK_VERSION=bytes.fromhex('42000001'),
+    GENESIS_VALIDATORS_ROOT=GENESIS_VALIDATORS_ROOT_STUB)
 # LUKSO testnet setting
 LUKSOTestnetSetting = BaseChainSetting(
-    NETWORK_NAME=LUKSO_TESTNET, GENESIS_FORK_VERSION=bytes.fromhex('42010001'))
+    NETWORK_NAME=LUKSO_TESTNET, GENESIS_FORK_VERSION=bytes.fromhex('42010001'),
+    GENESIS_VALIDATORS_ROOT=GENESIS_VALIDATORS_ROOT_STUB)
 
 # Mainnet setting
 MainnetSetting = BaseChainSetting(
