@@ -114,7 +114,7 @@ jobs:
           echo $VERSION
           rm -rf ./build/pytemps
           mkdir -p ./build/pytemps
-          python3 -m pip install cython
+          python3 -m pip install cython --target ./build/pytemps
           python3 -m pip install $VERSION --no-binary :all: --target ./build/pytemps
           python3 -m pip install -r ./build_configs/macos/requirements.txt --target ./build/pytemps
           python3 -m pip install -r ./build_configs/macos/requirements.pyinstaller.txt
