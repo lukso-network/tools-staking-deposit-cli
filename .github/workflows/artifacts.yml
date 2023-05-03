@@ -116,7 +116,8 @@ jobs:
           mkdir -p ./build/pytemps
           python3 -m pip install cython --target ./build/pytemps
           python3 -m pip install $VERSION --no-binary :all: --target ./build/pytemps
-          python3 -m pip install -r ./build_configs/macos/requirements.txt --target ./build/pytemps
+          python3 -m pip install cytoolz
+          python3 -m pip install -r ./build_configs/macos/requirements-nocytoolz.txt --target ./build/pytemps
           python3 -m pip install -r ./build_configs/macos/requirements.pyinstaller.txt
           export PYTHONPATH=./build/pytemps:.:$(python3 -c "import sys;print(':'.join(sys.path))")
           pyinstaller --distpath ./${{ env.BUILD_FILE_NAME }} ./build_configs/macos/build.spec;
