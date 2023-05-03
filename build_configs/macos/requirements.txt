@@ -1,5 +1,5 @@
 # Install the requirements for the program
--r ../../requirements.txt
+-r ../../requirements-nocytoolz.txt
 
 # Build tools for binary distribution
 # Skip pyinstaller here, because currently there is no universal2 wheel available.
