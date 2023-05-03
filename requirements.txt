@@ -18,6 +18,10 @@ click==8.1.3 \
     --hash=sha256:7682dc8afb30297001674575ea00d1814d808d6a36af415a82bd481d37ba7b8e \
     --hash=sha256:bb4d8133cb15a609f44e8213d9b391b0809795062913b383c62be0ee95b1db48
     # via -r requirements.in
+colorama==0.4.6 \
+    --hash=sha256:08695f5cb7ed6e0531a20572697297273c47b8cae5a63ffc6d6ed5c201be6e44 \
+    --hash=sha256:4f1d9991f5acc0ca119f9d443620b77f9d6b33703e51011c16baf57afb285fc6
+    # via -r requirements.in
 cytoolz==0.12.1 \
     --hash=sha256:02975e2b1e61e47e9afa311f4c1783d155136fad37c54a1cebfe991c5a0798a1 \
     --hash=sha256:03ab22c9aeb1535f8647d23b6520b0c3d41aaa18d04ef42b352dde1931f2e2b1 \
@@ -201,9 +205,9 @@ pyinstaller==5.9.0 \
     --hash=sha256:dcd348b174fd72c4df271790ac582969c9423cb099fe92db9ec131a8a9243d5a \
     --hash=sha256:e7a4c292810285c2466f3bdcb1e03ba2170177ebe3d7054ff1af3bb348bf61a4
     # via -r requirements.in
-pyinstaller-hooks-contrib==2023.0 \
-    --hash=sha256:29d052eb73e0ab8f137f11df8e73d464c1c6d4c3044d9dc8df2af44639d8bfbf \
-    --hash=sha256:bd578781cd6a33ef713584bf3726f7cd60a3e656ec08a6cc7971e39990808cc0
+pyinstaller-hooks-contrib==2023.2 \
+    --hash=sha256:7fb856a81fd06a717188a3175caa77e902035cc067b00b583c6409c62497b23f \
+    --hash=sha256:e02c5f0ee3d4f5814588c2128caf5036c058ba764aaf24d957bb5311ad8690ad
     # via pyinstaller
 pyrsistent==0.16.1 \
     --hash=sha256:aa2ae1c2e496f4d6777f869ea5de7166a8ccb9c2e06ebcf6c7ff1b670c98c5ef

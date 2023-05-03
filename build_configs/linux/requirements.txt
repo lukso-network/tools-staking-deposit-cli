@@ -79,9 +79,9 @@ altgraph==0.17.3 \
 macholib==1.15.2 \
     --hash=sha256:1542c41da3600509f91c165cb897e7e54c0e74008bd8da5da7ebbee519d593d2 \
     --hash=sha256:885613dd02d3e26dbd2b541eb4cc4ce611b841f827c0958ab98656e478b9e6f6
-pyinstaller-hooks-contrib==2023.0 \
-    --hash=sha256:29d052eb73e0ab8f137f11df8e73d464c1c6d4c3044d9dc8df2af44639d8bfbf \
-    --hash=sha256:bd578781cd6a33ef713584bf3726f7cd60a3e656ec08a6cc7971e39990808cc0
+pyinstaller-hooks-contrib==2023.2 \
+    --hash=sha256:7fb856a81fd06a717188a3175caa77e902035cc067b00b583c6409c62497b23f \
+    --hash=sha256:e02c5f0ee3d4f5814588c2128caf5036c058ba764aaf24d957bb5311ad8690ad
 importlib-metadata==4.11.3 \
     --hash=sha256:1208431ca90a8cca1a6b8af391bb53c1a2db74e5d1cef6ddced95d4b2062edc6 \
     --hash=sha256:ea4c597ebf37142f827b8f39299579e31685c31d3a438b59f469406afd0f2539
