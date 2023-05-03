@@ -18,3 +18,4 @@ six==1.16.0
 cached-property==1.5.2
 colorama==0.4.6
 macholib==1.16.2
+pefile==2023.2.7
