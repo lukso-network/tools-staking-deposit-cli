@@ -6,7 +6,7 @@ COPY requirements.txt setup.py ./
 
 COPY staking_deposit ./staking_deposit
 
-RUN apk add --update gcc libc-dev linux-headers zlib
+RUN apk add --update gcc libc-dev linux-headers zlib-dev
 
 RUN pip3 install -r requirements.txt
 
