@@ -1,5 +1,26 @@
 # Changelog
 
+## [2.5.3](https://github.com/lukso-network/tools-key-gen-cli/compare/v2.5.2...v2.5.3) (2023-05-08)
+
+
+### Bug Fixes
+
+* -nocytoolz is no more ([2aa05b8](https://github.com/lukso-network/tools-key-gen-cli/commit/2aa05b80e5b01ef243ddfaf804c84f65c48eba4d))
+* Also use -nocytoolz here ([8cd0c85](https://github.com/lukso-network/tools-key-gen-cli/commit/8cd0c85a41b18343645678dbc8c0cb5583c8487a))
+* Apply python fixes to allow GUI to build ([0c92854](https://github.com/lukso-network/tools-key-gen-cli/commit/0c928541e111b8e70d7fec8bbc3f3ae3f8592d3f))
+* local build now that GUI works ([237c6bb](https://github.com/lukso-network/tools-key-gen-cli/commit/237c6bb7fafcc55b2ea760642d5c23369519dca8))
+* Make sure all pyinstaller is 5.9 ([8bfb54c](https://github.com/lukso-network/tools-key-gen-cli/commit/8bfb54c04f9b9447ec80f1169d49a41f6e636111))
+* More dependencies affected (domino effect) ([8e1fa9a](https://github.com/lukso-network/tools-key-gen-cli/commit/8e1fa9a2307b0736d0b432ebfe8a5b3070c89489))
+* Need zlib-dev ([880830f](https://github.com/lukso-network/tools-key-gen-cli/commit/880830f7f41e02bb1747f60942b9080bd57e8087))
+* pyinstaller needs zlib in docker. ([bc8701a](https://github.com/lukso-network/tools-key-gen-cli/commit/bc8701a3fec18acd67b353785b621b34b4827a61))
+* pyinstaller-hooks-contrib ([4912dad](https://github.com/lukso-network/tools-key-gen-cli/commit/4912dad2e3cfc9eabd6a638a74b430180bd29af2))
+* Repair altgraph ([17e325f](https://github.com/lukso-network/tools-key-gen-cli/commit/17e325f8b45bbbea6f6d0332a8c821b976eebbe8))
+* Retry by updating hashes in requirements ([6eb67a9](https://github.com/lukso-network/tools-key-gen-cli/commit/6eb67a937977e7102081b80d2e1bab4dd27e3214))
+* To get fat binary needs to install cytoolz no binary ([33a0a1a](https://github.com/lukso-network/tools-key-gen-cli/commit/33a0a1a261d87739c2b06013687f199846230ada))
+* Upgrade macholib ([d3c46ac](https://github.com/lukso-network/tools-key-gen-cli/commit/d3c46ac8d96dce806ea0694be92f373826ba635d))
+* Upgrade pefile ([6c6cc15](https://github.com/lukso-network/tools-key-gen-cli/commit/6c6cc15424e3c77eb41a541a8d8ac7260a3c83c2))
+* Wrong place to apply -nocytoolz ([85c93c9](https://github.com/lukso-network/tools-key-gen-cli/commit/85c93c95bca80aeef113d04a9316201d840c4f07))
+
 ## [2.5.2](https://github.com/lukso-network/tools-key-gen-cli/compare/v2.5.1...v2.5.2) (2023-04-13)
 
 
