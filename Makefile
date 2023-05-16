@@ -25,7 +25,7 @@ clean:
 $(VENV_NAME)/bin/activate: requirements.txt
 	@test -d $(VENV_NAME) || python3 -m venv --clear $(VENV_NAME)
 	${VENV_NAME}/bin/python setup.py install
-	${VENV_NAME}/bin/python -m pip install -r requirements.txt
+	${VENV_NAME}/bin/python -m pip install -r requirements.txt --no-deps
 	${VENV_NAME}/bin/python -m pip install -r requirements_test.txt
 	@touch $(VENV_NAME)/bin/activate
 
@@ -44,7 +44,13 @@ venv_deposit: venv_build
 	$(VENV_ACTIVATE) && python ./staking_deposit/deposit.py $(filter-out $@,$(MAKECMDGOALS))
 
 build_macos: venv_build
-	${VENV_NAME}/bin/python -m pip install -r ./build_configs/macos/requirements.txt
+	${VENV_NAME}/bin/python -m pip install pip -U
+	${VENV_NAME}/bin/python -m pip uninstall cython pycryptodome cytoolz pyinstaller -y
+	${VENV_NAME}/bin/python -m pip install cython --no-binary :all: -U
+	${VENV_NAME}/bin/python -m pip install pycryptodome==3.14.1 --no-binary :all: -U
+	${VENV_NAME}/bin/python -m pip install cytoolz==0.12.1 --no-binary :all: -U
+	${VENV_NAME}/bin/python -m pip install pyinstaller -U
+	${VENV_NAME}/bin/python -m pip install -r ./build_configs/macos/requirements.txt --no-deps
 	export PYTHONHASHSEED=42; \
 	$(VENV_ACTIVATE) && pyinstaller ./build_configs/macos/build.spec;
 
