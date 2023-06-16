@@ -47,7 +47,7 @@ languages = get_first_options(MNEMONIC_LANG_OPTIONS)
 )
 @generate_keys_arguments_decorator
 def new_mnemonic(ctx: click.Context, mnemonic_language: str, **kwargs: Any) -> None:
-    ctx.obj = {}
+    ctx.obj = {} if ctx.obj is None else ctx.obj  # Create a new ctx.obj if it doesn't exist
     mnemonic = get_mnemonic(language=mnemonic_language, words_path=WORD_LISTS_PATH)
     mnemonic_file = ctx.params['mnemonic_file']
     if mnemonic_file:
