@@ -132,6 +132,7 @@ def generate_keys(ctx: click.Context, validator_start_index: int,
                   amount: int, eth1_withdrawal_address: HexAddress, **kwargs: Any) -> None:
     mnemonic = ctx.obj['mnemonic']
     mnemonic_password = ctx.obj['mnemonic_password']
+    mnemonic_path = ctx.obj.get('mnemonic_path')
     amounts = [amount] * num_validators
     folder = os.path.join(folder, DEFAULT_VALIDATOR_KEYS_FOLDER_NAME)
     chain_setting = get_chain_setting(chain)
@@ -155,8 +156,7 @@ def generate_keys(ctx: click.Context, validator_start_index: int,
         raise ValidationError(load_text(['err_verify_keystores']))
     if not verify_deposit_data_json(deposits_file, credentials.credentials):
         raise ValidationError(load_text(['err_verify_deposit']))
+
     click.echo(load_text(['msg_creation_success']) + folder)
-    mnemonic_file = kwargs['mnemonic_file']
-    if mnemonic_file:
-        path = os.path.normpath(f'{os.getcwd()}/{mnemonic_file}')
-        click.echo(f'Your mnemonics can be found at: {path}')
+    if mnemonic_path:
+        click.echo(f'Your mnemonics can be found at: {mnemonic_path}')

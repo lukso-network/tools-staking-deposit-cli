@@ -47,14 +47,15 @@ languages = get_first_options(MNEMONIC_LANG_OPTIONS)
 )
 @generate_keys_arguments_decorator
 def new_mnemonic(ctx: click.Context, mnemonic_language: str, **kwargs: Any) -> None:
+    ctx.obj = {}
     mnemonic = get_mnemonic(language=mnemonic_language, words_path=WORD_LISTS_PATH)
-
-    mnemonic_file = kwargs['mnemonic_file']
+    mnemonic_file = ctx.params['mnemonic_file']
     if mnemonic_file:
         path = os.path.normpath(f'{os.getcwd()}/{mnemonic_file}')
-        f = open(path, 'a')
+        f = open(path, 'w')
         f.write(mnemonic)
         f.close()
+        ctx.obj['mnemonic_path'] = path
     else:
         test_mnemonic = ''
         while mnemonic != reconstruct_mnemonic(test_mnemonic, WORD_LISTS_PATH):
@@ -66,7 +67,8 @@ def new_mnemonic(ctx: click.Context, mnemonic_language: str, **kwargs: Any) -> N
             click.clear()
             test_mnemonic = click.prompt(load_text(['msg_mnemonic_retype_prompt']) + '\n\n')
         click.clear()
-    # Do NOT use mnemonic_password.
-    ctx.obj = {'mnemonic': mnemonic, 'mnemonic_password': ''}
+
+    ctx.obj['mnemonic'] = mnemonic
+    ctx.obj['mnemonic_password'] = '' # Do NOT use mnemonic_password.
     ctx.params['validator_start_index'] = 0
     ctx.forward(generate_keys)
