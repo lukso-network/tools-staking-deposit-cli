@@ -71,7 +71,7 @@ def generate_keys_arguments_decorator(function: Callable[..., Any]) -> Callable[
         ),
         jit_option(
             help=f'If this option are set, the generated mnemonic will be store in a destination file provided.',
-            param_decls='--mnemonic_dest_file',
+            param_decls='--mnemonic_file',
             type=click.Path(exists=False, file_okay=True, dir_okay=False),
         ),
         jit_option(
@@ -156,7 +156,7 @@ def generate_keys(ctx: click.Context, validator_start_index: int,
     if not verify_deposit_data_json(deposits_file, credentials.credentials):
         raise ValidationError(load_text(['err_verify_deposit']))
     click.echo(load_text(['msg_creation_success']) + folder)
-    mnemonic_dest_file = kwargs['mnemonic_dest_file']
-    if mnemonic_dest_file:
-        path = os.path.normpath(f'{os.getcwd()}/{mnemonic_dest_file}')
+    mnemonic_file = kwargs['mnemonic_file']
+    if mnemonic_file:
+        path = os.path.normpath(f'{os.getcwd()}/{mnemonic_file}')
         click.echo(f'Your mnemonics can be found at: {path}')
