@@ -1,3 +1,4 @@
+import os
 import click
 from typing import (
     Any,
@@ -47,16 +48,24 @@ languages = get_first_options(MNEMONIC_LANG_OPTIONS)
 @generate_keys_arguments_decorator
 def new_mnemonic(ctx: click.Context, mnemonic_language: str, **kwargs: Any) -> None:
     mnemonic = get_mnemonic(language=mnemonic_language, words_path=WORD_LISTS_PATH)
-    test_mnemonic = ''
-    while mnemonic != reconstruct_mnemonic(test_mnemonic, WORD_LISTS_PATH):
-        click.clear()
-        click.echo(load_text(['msg_mnemonic_presentation']))
-        click.echo('\n\n%s\n\n' % mnemonic)
-        click.pause(load_text(['msg_press_any_key']))
 
+    mnemonic_dest_file = kwargs['mnemonic_dest_file']
+    if mnemonic_dest_file:
+        path = os.path.normpath(f'{os.getcwd()}/{mnemonic_dest_file}')
+        f = open(path, 'a')
+        f.write(mnemonic)
+        f.close()
+    else:
+        test_mnemonic = ''
+        while mnemonic != reconstruct_mnemonic(test_mnemonic, WORD_LISTS_PATH):
+            click.clear()
+            click.echo(load_text(['msg_mnemonic_presentation']))
+            click.echo('\n\n%s\n\n' % mnemonic)
+            click.pause(load_text(['msg_press_any_key']))
+
+            click.clear()
+            test_mnemonic = click.prompt(load_text(['msg_mnemonic_retype_prompt']) + '\n\n')
         click.clear()
-        test_mnemonic = click.prompt(load_text(['msg_mnemonic_retype_prompt']) + '\n\n')
-    click.clear()
     # Do NOT use mnemonic_password.
     ctx.obj = {'mnemonic': mnemonic, 'mnemonic_password': ''}
     ctx.params['validator_start_index'] = 0

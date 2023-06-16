@@ -70,6 +70,11 @@ def generate_keys_arguments_decorator(function: Callable[..., Any]) -> Callable[
             prompt=lambda: load_text(['num_validators', 'prompt'], func='generate_keys_arguments_decorator'),
         ),
         jit_option(
+            help=f'If this option are set, the generated mnemonic will be store in a destination file provided.',
+            param_decls='--mnemonic_dest_file',
+            type=click.Path(exists=False, file_okay=True, dir_okay=False),
+        ),
+        jit_option(
             default=os.getcwd(),
             help=lambda: load_text(['folder', 'help'], func='generate_keys_arguments_decorator'),
             param_decls='--folder',
@@ -96,9 +101,6 @@ def generate_keys_arguments_decorator(function: Callable[..., Any]) -> Callable[
             callback=captive_prompt_callback(
                 validate_password_strength,
                 lambda:load_text(['keystore_password', 'prompt'], func='generate_keys_arguments_decorator'),
-                lambda:load_text(['keystore_password', 'confirm'], func='generate_keys_arguments_decorator'),
-                lambda: load_text(['keystore_password', 'mismatch'], func='generate_keys_arguments_decorator'),
-                True,
             ),
             help=lambda: load_text(['keystore_password', 'help'], func='generate_keys_arguments_decorator'),
             hide_input=True,
@@ -154,4 +156,7 @@ def generate_keys(ctx: click.Context, validator_start_index: int,
     if not verify_deposit_data_json(deposits_file, credentials.credentials):
         raise ValidationError(load_text(['err_verify_deposit']))
     click.echo(load_text(['msg_creation_success']) + folder)
-    click.pause(load_text(['msg_pause']))
+    mnemonic_dest_file = kwargs['mnemonic_dest_file']
+    if mnemonic_dest_file:
+        path = os.path.normpath(f'{os.getcwd()}/{mnemonic_dest_file}')
+        click.echo(f'Your mnemonics can be found at: {path}')
