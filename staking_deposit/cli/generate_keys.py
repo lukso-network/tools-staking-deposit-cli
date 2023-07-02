@@ -70,6 +70,11 @@ def generate_keys_arguments_decorator(function: Callable[..., Any]) -> Callable[
             prompt=lambda: load_text(['num_validators', 'prompt'], func='generate_keys_arguments_decorator'),
         ),
         jit_option(
+            help=f'If this option are set, the generated mnemonic will be store in a destination file provided.',
+            param_decls='--mnemonic_file',
+            type=click.Path(exists=False, file_okay=True, dir_okay=False),
+        ),
+        jit_option(
             default=os.getcwd(),
             help=lambda: load_text(['folder', 'help'], func='generate_keys_arguments_decorator'),
             param_decls='--folder',
@@ -96,9 +101,6 @@ def generate_keys_arguments_decorator(function: Callable[..., Any]) -> Callable[
             callback=captive_prompt_callback(
                 validate_password_strength,
                 lambda:load_text(['keystore_password', 'prompt'], func='generate_keys_arguments_decorator'),
-                lambda:load_text(['keystore_password', 'confirm'], func='generate_keys_arguments_decorator'),
-                lambda: load_text(['keystore_password', 'mismatch'], func='generate_keys_arguments_decorator'),
-                True,
             ),
             help=lambda: load_text(['keystore_password', 'help'], func='generate_keys_arguments_decorator'),
             hide_input=True,
@@ -130,6 +132,7 @@ def generate_keys(ctx: click.Context, validator_start_index: int,
                   amount: int, eth1_withdrawal_address: HexAddress, **kwargs: Any) -> None:
     mnemonic = ctx.obj['mnemonic']
     mnemonic_password = ctx.obj['mnemonic_password']
+    mnemonic_path = ctx.obj.get('mnemonic_path')
     amounts = [amount] * num_validators
     folder = os.path.join(folder, DEFAULT_VALIDATOR_KEYS_FOLDER_NAME)
     chain_setting = get_chain_setting(chain)
@@ -153,5 +156,7 @@ def generate_keys(ctx: click.Context, validator_start_index: int,
         raise ValidationError(load_text(['err_verify_keystores']))
     if not verify_deposit_data_json(deposits_file, credentials.credentials):
         raise ValidationError(load_text(['err_verify_deposit']))
+
     click.echo(load_text(['msg_creation_success']) + folder)
-    click.pause(load_text(['msg_pause']))
+    if mnemonic_path:
+        click.echo(f'Your mnemonics can be found at: {mnemonic_path}')
