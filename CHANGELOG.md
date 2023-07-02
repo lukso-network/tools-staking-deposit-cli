@@ -1,5 +1,12 @@
 # Changelog
 
+## [2.5.4](https://github.com/lukso-network/tools-key-gen-cli/compare/v2.5.3...v2.5.4) (2023-07-02)
+
+
+### Bug Fixes
+
+* JITOptions get_default doesn't support new click API, empty args don't diplay help ([cc669cc](https://github.com/lukso-network/tools-key-gen-cli/commit/cc669cc5d0a9c896cf3fb95f075e935ad24cecea))
+
 ## [2.5.3](https://github.com/lukso-network/tools-key-gen-cli/compare/v2.5.2...v2.5.3) (2023-05-08)
 
 

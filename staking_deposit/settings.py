@@ -11,6 +11,7 @@ class BaseChainSetting(NamedTuple):
 
 LUKSO = 'lukso'
 LUKSO_TESTNET = 'lukso-testnet'
+LUKSO_DEVNET = 'lukso-devnet'
 MAINNET = 'ethereum'
 ROPSTEN = 'ropsten'
 GOERLI = 'goerli'
@@ -25,6 +26,9 @@ LUKSOSetting = BaseChainSetting(
 # LUKSO testnet setting
 LUKSOTestnetSetting = BaseChainSetting(
     NETWORK_NAME=LUKSO_TESTNET, GENESIS_FORK_VERSION=bytes.fromhex('42010001'))
+# LUKSO devnet setting
+LUKSODevnetSetting = BaseChainSetting(
+    NETWORK_NAME=LUKSO_DEVNET, GENESIS_FORK_VERSION=bytes.fromhex('74200001'))
 # Ethereum Mainnet setting
 MainnetSetting = BaseChainSetting(
     NETWORK_NAME=MAINNET, GENESIS_FORK_VERSION=bytes.fromhex('00000000'))
@@ -44,6 +48,7 @@ SepoliaSetting = BaseChainSetting(
 ALL_CHAINS: Dict[str, BaseChainSetting] = {
     LUKSO: LUKSOSetting,
     LUKSO_TESTNET: LUKSOTestnetSetting,
+    LUKSO_DEVNET: LUKSODevnetSetting,
     MAINNET: MainnetSetting,
     ROPSTEN: RopstenSetting,
     GOERLI: GoerliSetting,
