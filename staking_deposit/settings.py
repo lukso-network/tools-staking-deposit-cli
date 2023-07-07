@@ -41,9 +41,6 @@ MainnetSetting = BaseChainSetting(
 GoerliSetting = BaseChainSetting(
     NETWORK_NAME=GOERLI, GENESIS_FORK_VERSION=bytes.fromhex('00001020'),
     GENESIS_VALIDATORS_ROOT=bytes.fromhex('043db0d9a83813551ee2f33450d23797757d430911a9320530ad8a0eabc43efb'))
-# Merge Testnet (spec v1.1.9)
-KilnSetting = BaseChainSetting(
-    NETWORK_NAME=KILN, GENESIS_FORK_VERSION=bytes.fromhex('70000069'))
 # Sepolia setting
 SepoliaSetting = BaseChainSetting(
     NETWORK_NAME=SEPOLIA, GENESIS_FORK_VERSION=bytes.fromhex('90000069'),
