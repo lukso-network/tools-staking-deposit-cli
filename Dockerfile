@@ -7,7 +7,6 @@ COPY requirements.txt setup.py ./
 COPY staking_deposit ./staking_deposit
 
 RUN apk add --update gcc libc-dev linux-headers zlib-dev build-base openssl-dev libffi-dev
-# RUN apt-get update && apt-get install -y libssl-dev libffi-dev build-essential zlib1g-dev
 
 RUN pip3 install -U pip
 RUN pip3 install -U cython==0.29.33
