@@ -115,8 +115,8 @@ jobs:
           rm -rf ./build/pytemps
           mkdir -p ./build/pytemps
           python3 -m pip install cython==0.29.33 --no-binary --target ./build/pytemps
-          python3 -m pip install $VERSION --no-binary :all: --target ./build/pytemps
           python3 -m pip install cytoolz==0.12.1 --no-binary :all: --target ./build/pytemps
+          python3 -m pip install $VERSION --no-binary :all: --target ./build/pytemps
           python3 -m pip install -r ./build_configs/macos/requirements.txt --target ./build/pytemps
           python3 -m pip install -r ./build_configs/macos/requirements.pyinstaller.txt --target ./build/pytemps
           export PYTHONPATH=./build/pytemps:.:$(python3 -c "import sys;print(':'.join(sys.path))")
