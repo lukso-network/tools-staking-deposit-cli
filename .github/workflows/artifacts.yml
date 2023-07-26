@@ -115,7 +115,7 @@ jobs:
           rm -rf ./build/pytemps
           mkdir -p ./build/pytemps
           python3 -m pip install cython==0.29.33 --no-binary :all: --target ./build/pytemps
-          python3 -m pip install cytoolz==0.12.1 --no-binary :all: --target ./build/pytemps
+          python3 -m pip install cytoolz==0.12.2 --no-binary :all: --target ./build/pytemps
           python3 -m pip install $VERSION --target ./build/pytemps
           python3 -m pip install -r ./build_configs/macos/requirements.txt --target ./build/pytemps
           python3 -m pip install -r ./build_configs/macos/requirements.pyinstaller.txt --target ./build/pytemps
