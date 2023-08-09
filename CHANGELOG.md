@@ -1,5 +1,34 @@
 # Changelog
 
+## [2.5.5](https://github.com/lukso-network/tools-key-gen-cli/compare/v2.5.4...v2.5.5) (2023-08-09)
+
+
+### Bug Fixes
+
+* --amount is no longer a thing ([807c155](https://github.com/lukso-network/tools-key-gen-cli/commit/807c1556cc241603a99810cb913d8ef33f4bf4a4))
+* Add a small buildtest.sh script which allows testing of gitops build (mostly useful for MacOS Mx) ([f25b9e6](https://github.com/lukso-network/tools-key-gen-cli/commit/f25b9e686a6a3ba10f867e39170fbf86057ceba6))
+* Adjust readme comment for --chain on new bls-to-execution-change sub-command. ([b0c0f91](https://github.com/lukso-network/tools-key-gen-cli/commit/b0c0f91151d9b2bd56c96dc20734b6f2ec37f1e2))
+* Docker build. ([92ffb49](https://github.com/lukso-network/tools-key-gen-cli/commit/92ffb491a19f2fed4cb7492f82aab8cddb3ebba6))
+* Dockerbuild is not even reproducible locally ([5a5ce84](https://github.com/lukso-network/tools-key-gen-cli/commit/5a5ce846e8cd748bdc3dd6a9a5bf87175c087a7e))
+* Fix arg errors in pip ([0c05938](https://github.com/lukso-network/tools-key-gen-cli/commit/0c05938c39389539f09e681870efa0772bf7f0f9))
+* Fix pyinstaller by reverting it again ([431475c](https://github.com/lukso-network/tools-key-gen-cli/commit/431475c33e7c0aba99390eed52fa395344bdeacf))
+* Install cython, cytoolz and pycryptodome separately in Dockerfile ([1c61905](https://github.com/lukso-network/tools-key-gen-cli/commit/1c619054d35c95191ebffc1d21d62bfc4206548d))
+* Move cython and pyinstaller fully global ([55f304a](https://github.com/lukso-network/tools-key-gen-cli/commit/55f304a9299410ae49f416c4ae4a9ac195de6627))
+* Now pycryptodome is no longer building on mac ([2bfdcc9](https://github.com/lukso-network/tools-key-gen-cli/commit/2bfdcc9fdc4685f981ca60a24a7cb0da5d677fb8))
+* Patch cython build ([9072a07](https://github.com/lukso-network/tools-key-gen-cli/commit/9072a07e5d278037026f14d8f6e65a5a6c13ec1e))
+* Patch to specific cython version ([470eeba](https://github.com/lukso-network/tools-key-gen-cli/commit/470eebac8cf75aad604ddd0bc28101151d75c7bb))
+* Remove another unused network KILN ([377cf03](https://github.com/lukso-network/tools-key-gen-cli/commit/377cf038d4b0919bf6bbaef02f584b616a8df7da))
+* Remove incomplete and unused network settings ([e382bc8](https://github.com/lukso-network/tools-key-gen-cli/commit/e382bc8382214b57d0a9e4949196b3dfbee435ec))
+* Remove unused commented out code ([d8bc056](https://github.com/lukso-network/tools-key-gen-cli/commit/d8bc056fa1f119b7331690b157b246384aa25d26))
+* Repair requirements_test.txt ([18d6df3](https://github.com/lukso-network/tools-key-gen-cli/commit/18d6df3b4fbb8a08b8367a19631bc791e66d9882))
+* Test a way to force using the right cython and cytoolz ([592856c](https://github.com/lukso-network/tools-key-gen-cli/commit/592856c586d17b7741f089a7bde41505fd5f6680))
+* try again ([e856b49](https://github.com/lukso-network/tools-key-gen-cli/commit/e856b495798eae70a96b495f24a253b89a24168a))
+* Try patch of cytoolz ([5b124b5](https://github.com/lukso-network/tools-key-gen-cli/commit/5b124b52a43d824ba88a963eed528835b6115076))
+* Try patch of cytoolz ([b4eba45](https://github.com/lukso-network/tools-key-gen-cli/commit/b4eba451e51188b27da04b0cea96587df6a70990))
+* Upgrade python docker to 3.11.4-alpine3.18 ([32857be](https://github.com/lukso-network/tools-key-gen-cli/commit/32857be2009b4aba823cd48f4454000da0bf46da))
+* Use non-rooted python installer ([96f83eb](https://github.com/lukso-network/tools-key-gen-cli/commit/96f83eb90d4e8603816e538349f4450c84a5b861))
+* Use python 3.11.4 for all archs ([4889ef2](https://github.com/lukso-network/tools-key-gen-cli/commit/4889ef21d4170d72d61d8449a93d9693c5373dc5))
+
 ## [2.5.4](https://github.com/lukso-network/tools-key-gen-cli/compare/v2.5.3...v2.5.4) (2023-07-02)
 
 

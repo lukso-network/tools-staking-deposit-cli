@@ -1,3 +1,8 @@
+pytest==7.1.0
+pytest-asyncio==0.18.2
+flake8==4.0.1
+mypy==0.941
+
 pyinstaller==5.9.0
 py-ecc==5.2.0
 pycryptodome==3.14.1
