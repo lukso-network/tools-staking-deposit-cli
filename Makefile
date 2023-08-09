@@ -48,7 +48,7 @@ build_macos: venv_build
 	${VENV_NAME}/bin/python -m pip uninstall cython pycryptodome cytoolz pyinstaller -y
 	${VENV_NAME}/bin/python -m pip install cython --no-binary :all: -U
 	${VENV_NAME}/bin/python -m pip install pycryptodome==3.14.1 --no-binary :all: -U
-	${VENV_NAME}/bin/python -m pip install cytoolz==0.12.1 --no-binary :all: -U
+	${VENV_NAME}/bin/python -m pip install cytoolz==0.12.2 --no-binary :all: -U
 	${VENV_NAME}/bin/python -m pip install pyinstaller -U
 	${VENV_NAME}/bin/python -m pip install -r ./build_configs/macos/requirements.txt --no-deps
 	export PYTHONHASHSEED=42; \
