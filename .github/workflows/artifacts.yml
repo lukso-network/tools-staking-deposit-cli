@@ -99,13 +99,13 @@ jobs:
         if: ${{ matrix.os != 'macos' }}
         uses: actions/setup-python@v4
         with:
-          python-version: 3.11.4
+          python-version: 3.11.3
           architecture: x64
       - name: Set up Python
         if: ${{ matrix.os == 'macos' }}
         uses: actions/setup-python@v4
         with:
-          python-version: "3.11.4"
+          python-version: "3.11.3"
       - name: Install and build universal2 requirements on macos
         if: ${{ matrix.os == 'macos' }}
         run: |
