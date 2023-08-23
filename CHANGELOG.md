@@ -1,5 +1,13 @@
 # Changelog
 
+## [2.5.6](https://github.com/lukso-network/tools-key-gen-cli/compare/v2.5.5...v2.5.6) (2023-08-21)
+
+
+### Bug Fixes
+
+* Cleanup and re-try ([5b5fde5](https://github.com/lukso-network/tools-key-gen-cli/commit/5b5fde5a76d1a2303a531a68aec66344d9762265))
+* Universal2 build macos is completely broken for unknown reason ([ebb9622](https://github.com/lukso-network/tools-key-gen-cli/commit/ebb962229a5a56ebe6271483877c0e56ace71c44))
+
 ## [2.5.5](https://github.com/lukso-network/tools-key-gen-cli/compare/v2.5.4...v2.5.5) (2023-08-09)
 
 
