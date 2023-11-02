@@ -141,7 +141,7 @@ eth-utils==1.10.0 \
     #   -r requirements.in
     #   py-ecc
     #   ssz
-lru-dict==1.2.0 \
+lru-dict==1.1.7 \
     --hash=sha256:45b81f67d75341d4433abade799a47e9c42a9e22a118531dcb5e549864032d7c
     # via
     #   -r requirements.in

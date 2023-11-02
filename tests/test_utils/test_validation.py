@@ -8,6 +8,7 @@ from staking_deposit.utils.validation import (
     normalize_input_list,
     validate_int_range,
     validate_password_strength,
+    normalize_bls_withdrawal_credentials_to_bytes,
 )
 
 
@@ -60,3 +61,19 @@ def test_validate_int_range(num: Any, low: int, high: int, valid: bool) -> None:
 )
 def test_normalize_input_list(input, result):
     assert normalize_input_list(input) == result
+
+
+@pytest.mark.parametrize(
+    'input, result',
+    [
+        ('1', ['1']),
+        ('1,2,3', ['1', '2', '3']),
+        ('[1,2,3]', ['1', '2', '3']),
+        ('(1,2,3)', ['1', '2', '3']),
+        ('{1,2,3}', ['1', '2', '3']),
+        ('1 2 3', ['1', '2', '3']),
+        ('1  2  3', ['1', '2', '3']),
+    ]
+)
+def test_normalize_bls_withdrawal_credentials_to_bytes():
+    assert normalize_bls_withdrawal_credentials_to_bytes(input) == result
