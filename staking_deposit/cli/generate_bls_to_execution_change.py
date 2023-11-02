@@ -69,7 +69,7 @@ FUNC_NAME = 'generate_bls_to_execution_change'
             list(ALL_CHAINS.keys())
         ),
     ),
-    default=MAINNET,
+    default=LUKSO,
     help=lambda: load_text(['arg_chain', 'help'], func=FUNC_NAME),
     param_decls='--chain',
     prompt=choice_prompt_func(

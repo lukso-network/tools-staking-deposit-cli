@@ -68,7 +68,7 @@ ALL_CHAINS: Dict[str, BaseChainSetting] = {
 }
 
 
-def get_chain_setting(chain_name: str = MAINNET) -> BaseChainSetting:
+def get_chain_setting(chain_name: str = LUKSO) -> BaseChainSetting:
     return ALL_CHAINS[chain_name]
 
 
