@@ -66,14 +66,8 @@ def test_normalize_input_list(input, result):
 @pytest.mark.parametrize(
     'input, result',
     [
-        ('1', ['1']),
-        ('1,2,3', ['1', '2', '3']),
-        ('[1,2,3]', ['1', '2', '3']),
-        ('(1,2,3)', ['1', '2', '3']),
-        ('{1,2,3}', ['1', '2', '3']),
-        ('1 2 3', ['1', '2', '3']),
-        ('1  2  3', ['1', '2', '3']),
+        ('0x00abfc563b1f859d24c91dde59b95621579792b00633b69b262d74ad1e9da3a4', ['']),
     ]
 )
-def test_normalize_bls_withdrawal_credentials_to_bytes():
+def test_normalize_bls_withdrawal_credentials_to_bytes(input, result):
     assert normalize_bls_withdrawal_credentials_to_bytes(input) == result
