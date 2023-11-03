@@ -35,7 +35,7 @@ from staking_deposit.utils.intl import (
 )
 from staking_deposit.settings import (
     ALL_CHAINS,
-    MAINNET,
+    LUKSO,
     PRATER,
     get_chain_setting,
     get_devnet_chain_setting,
