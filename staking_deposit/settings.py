@@ -1,5 +1,5 @@
 from typing import Dict, NamedTuple
-from eth_utils import decode_hex
+from .version import __version__
 
 DEPOSIT_CLI_VERSION = __version__
 

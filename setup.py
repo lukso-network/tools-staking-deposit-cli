@@ -1,4 +1,5 @@
 from setuptools import find_packages, setup
+from staking_deposit import __version__
 
 """
 THIS IS A STUB FOR RUNNING THE APP
