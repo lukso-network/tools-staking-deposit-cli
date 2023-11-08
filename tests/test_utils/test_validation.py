@@ -67,7 +67,7 @@ def test_normalize_input_list(input, result):
 @pytest.mark.parametrize(
     'input',
     [
-        ('0x00abfc563b1f859d24c91dde59b95621579792b00633b69b262d74ad1e9da3a4'),
+        '0x00abfc563b1f859d24c91dde59b95621579792b00633b69b262d74ad1e9da3a4',
     ]
 )
 def test_normalize_bls_withdrawal_credentials_to_bytes(input):
@@ -77,7 +77,7 @@ def test_normalize_bls_withdrawal_credentials_to_bytes(input):
 @pytest.mark.parametrize(
     'input',
     [
-        ('0x00abfc563b1f859d24c91dde59b95621579792b00633b69b262d74ad1e9da3a4'),
+        '0x00abfc563b1f859d24c91dde59b95621579792b00633b69b262d74ad1e9da3a4',
     ]
 )
 def test_validate_bls_withdrawal_credentials(input):
