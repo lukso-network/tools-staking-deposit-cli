@@ -4,12 +4,12 @@ if [[ "$OSTYPE" == "linux"* ]] || [[ "$OSTYPE" == "linux-android"* ]] || [[ "$OS
     echo $OSTYPE
     if [[ $1 == "install" ]]; then
         echo "Installing dependencies..."
-        pip3 install -r requirements.txt
-        python3 setup.py install
+        python3.10 -m pip install -r requirements.txt
+        python3.10 setup.py install
         exit 1
     fi
     echo "Running deposit-cli..."
-    PYTHONPATH=. python3 ./staking_deposit/deposit.py "$@"
+    PYTHONPATH=. python3.10 ./staking_deposit/deposit.py "$@"
 
 elif [[ "$OSTYPE" == "msys" ]] || [[ "$OSTYPE" == "cygwin" ]]; then
     echo $OSTYPE
