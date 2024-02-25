@@ -27,7 +27,7 @@ from staking_deposit.utils.click import (
     jit_option,
 )
 from staking_deposit.utils.intl import (
-    closest_match,
+    exact_match,
     load_text,
 )
 from staking_deposit.settings import (
@@ -65,7 +65,7 @@ def generate_keys_arguments_decorator(function: Callable[..., Any]) -> Callable[
         ),
         jit_option(
             callback=captive_prompt_callback(
-                lambda x: closest_match(x, list(ALL_CHAINS.keys())),
+                lambda x: exact_match(x, list(ALL_CHAINS.keys())),
                 choice_prompt_func(
                     lambda: load_text(['chain', 'prompt'], func='generate_keys_arguments_decorator'),
                     list(ALL_CHAINS.keys())

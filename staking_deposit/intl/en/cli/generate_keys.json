@@ -9,7 +9,7 @@
         },
         "chain": {
             "help": "The name of LUKSO PoS chain you are targeting. Use \"lukso\" if you are depositing LYX",
-            "prompt": "Please choose the (mainnet or testnet) network/chain name"
+            "prompt": "Please choose the (lukso or lukso-testnet) network/chain name"
         },
         "keystore_password": {
             "help": "The password that will secure your keystores. You will need to re-enter this to decrypt them when you setup your LUKSO validators. (It is recommended not to use this argument, and wait for the CLI to ask you for your mnemonic as otherwise it will appear in your shell history.)",

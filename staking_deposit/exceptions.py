@@ -1,2 +1,5 @@
-class ValidationError(Exception):
+from click import UsageError
+
+
+class ValidationError(UsageError):
     ...
