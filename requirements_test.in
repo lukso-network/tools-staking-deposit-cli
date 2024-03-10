@@ -5,6 +5,7 @@ mypy==0.941
 pyflakes>=3.2.0
 pycodestyle>=2.11.0
 altgraph==0.17.4
+jsonschema==4.21.1
 
 pyinstaller==5.9.0
 py-ecc==5.2.0
