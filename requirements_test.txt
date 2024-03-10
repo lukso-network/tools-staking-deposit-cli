@@ -145,9 +145,9 @@ eth-utils==1.10.0 \
     #   -r requirements_test.in
     #   py-ecc
     #   ssz
-flake8==7.0.0 \
-    --hash=sha256:33f96621059e65eec474169085dc92bf26e7b2d47366b70be2f67ab80dc25132 \
-    --hash=sha256:a6dfbb75e03252917f2473ea9653f7cd799c3064e54d4c8140044c5c065f53c3
+flake8==4.0.1 \
+    --hash=sha256:479b1304f72536a55948cb40a32dce8bb0ffe3501e26eaf292c7e60eb5e0428d \
+    --hash=sha256:806e034dda44114815e23c16ef92f95c91e4c71100ff52813adf7132a6ad870d
     # via -r requirements_test.in
 iniconfig==2.0.0 \
     --hash=sha256:2d91e135bf72d31a410b17c16da610a82cb55f6b0477d1a902134b24a455b8b3 \
@@ -164,9 +164,9 @@ macholib==1.16.2 \
     # via
     #   -r requirements_test.in
     #   pyinstaller
-mccabe==0.7.0 \
-    --hash=sha256:348e0240c33b60bbdf4e523192ef919f28cb2c3d7d5c7794f74009290f236325 \
-    --hash=sha256:6c2d30ab6be0e4a46919781807b4f0d834ebdd6c6e3dca0bda5a15f863427b6e
+mccabe==0.6.1 \
+    --hash=sha256:ab8a6258860da4b6677da4bd2fe5dc2c659cff31b3ee4f7f5d64e79735b80d42 \
+    --hash=sha256:dd8d182285a0fe56bace7f45b5e7d1a6ebcbf524e8f3bd87eb0f125271b8831f
     # via flake8
 mypy==0.941 \
     --hash=sha256:080097eee5393fd740f32c63f9343580aaa0fb1cda0128fd859dfcf081321c3d \
@@ -200,9 +200,9 @@ mypy-extensions==0.4.3 \
     #   -r requirements_test.in
     #   mypy
     #   py-ecc
-packaging==23.2 \
-    --hash=sha256:048fb0e9405036518eaaf48a55953c750c11e1a1b68e0dd1a9d62ed0c092cfc5 \
-    --hash=sha256:8c491190033a9af7e1d931d0b5dacc2ef47509b34dd0de67ed209b5203fc88c7
+packaging==24.0 \
+    --hash=sha256:2ddfb553fdf02fb784c234c7ba6ccc288296ceabec964ad2eae3777778130bc5 \
+    --hash=sha256:eb82c5e3e56209074766e6885bb04b8c38a0c015d0a30036ebe7ece34c9989e9
     # via
     #   pyinstaller-hooks-contrib
     #   pytest
@@ -222,10 +222,12 @@ py-ecc==5.2.0 \
     --hash=sha256:525b95aae5bbc185baff7dbfdb9bbd14d2c9454a797457f3edc85fd14c2ad7a6 \
     --hash=sha256:f0aabdc82813ecb2e75e0531e3850295ff1a96bedfba42f15b5bc7f39ced64ba
     # via -r requirements_test.in
-pycodestyle==2.11.1 \
-    --hash=sha256:41ba0e7afc9752dfb53ced5489e89f8186be00e599e712660695b7a75ff2663f \
-    --hash=sha256:44fe31000b2d866f2e41841b18528a505fbd7fef9017b04eff4e2648a0fadc67
-    # via flake8
+pycodestyle==2.8.0 \
+    --hash=sha256:720f8b39dde8b293825e7ff02c475f3077124006db4f440dcbc9a20b76548a20 \
+    --hash=sha256:eddd5847ef438ea1c7870ca7eb78a9d47ce0cdb4851a5523949f2601d0cbbe7f
+    # via
+    #   -r requirements_test.in
+    #   flake8
 pycryptodome==3.14.1 \
     --hash=sha256:028dcbf62d128b4335b61c9fbb7dd8c376594db607ef36d5721ee659719935d5 \
     --hash=sha256:12ef157eb1e01a157ca43eda275fa68f8db0dd2792bc4fe00479ab8f0e6ae075 \
@@ -258,10 +260,12 @@ pycryptodome==3.14.1 \
     --hash=sha256:f403a3e297a59d94121cb3ee4b1cf41f844332940a62d71f9e4a009cc3533493 \
     --hash=sha256:f572a3ff7b6029dd9b904d6be4e0ce9e309dcb847b03e3ac8698d9d23bb36525
     # via -r requirements_test.in
-pyflakes==3.2.0 \
-    --hash=sha256:1c61603ff154621fb2a9172037d84dca3500def8c8b630657d1701f026f8af3f \
-    --hash=sha256:84b5be138a2dfbb40689ca07e2152deb896a65c3a3e24c251c5c62489568074a
-    # via flake8
+pyflakes==2.4.0 \
+    --hash=sha256:05a85c2872edf37a4ed30b0cce2f6093e1d0581f8c19d7393122da7e25b2b24c \
+    --hash=sha256:3bb3a3f256f4b7968c9c788781e4ff07dce46bdf12339dcda61053375426ee2e
+    # via
+    #   -r requirements_test.in
+    #   flake8
 pyinstaller==5.9.0 \
     --hash=sha256:12ca6567be457826e14416637ea54485a185d0ce7a5a044df0d0daf588fff6d1 \
     --hash=sha256:2ba42038b3bd83e1fba7c8eb9e7cde43bd5938e37ca542c89e8779355d213f52 \

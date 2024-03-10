@@ -1,7 +1,9 @@
 pytest==7.1.0
 pytest-asyncio==0.18.2
-flake8==7.0.0
+flake8==4.0.1
 mypy==0.941
+pyflakes==2.4.0
+pycodestyle==2.8.0
 
 pyinstaller==5.9.0
 py-ecc==5.2.0
