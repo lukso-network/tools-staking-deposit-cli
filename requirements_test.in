@@ -1,9 +1,10 @@
 pytest==7.1.0
 pytest-asyncio==0.18.2
-flake8==4.0.1
+flake8==7.0.0
 mypy==0.941
-pyflakes==2.4.0
-pycodestyle==2.8.0
+pyflakes>=3.2.0
+pycodestyle>=2.11.0
+altgraph==0.17.4
 
 pyinstaller==5.9.0
 py-ecc==5.2.0
@@ -11,7 +12,6 @@ pycryptodome==3.14.1
 click==7.1.2
 ssz==0.2.4
 eth-typing==2.3.0
-setuptools==60.9.3
 
 # Dependencies for the above
 eth-utils==1.10.0
