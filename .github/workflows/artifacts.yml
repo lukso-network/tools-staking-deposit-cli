@@ -45,6 +45,7 @@ jobs:
         run: pytest
 
   build-docker:
+    needs: build-test
     permissions:
       contents: "read"
       id-token: "write"
@@ -97,6 +98,7 @@ jobs:
             ${{ env.DOCKER_REGISTRY }}/${{ env.DOCKER_IMAGE_NAME }}:latest
     
   build-native:
+    needs: build-test
     runs-on: ${{ matrix.runner }}
     strategy:
       fail-fast: false
