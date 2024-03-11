@@ -22,7 +22,30 @@ env:
 
 name: build artifacts
 jobs:
+  build-test:
+    runs-on: ubuntu-latest
+    steps:
+      - name: Checkout ${{ inputs.sha }}
+        uses: actions/checkout@master
+        with:
+          ref: ${{ inputs.sha }}
+      - name: Set up Python
+        uses: actions/setup-python@v2
+        with:
+          python-version: "3.11.3"
+      - name: Install dependencies
+        run: |
+          pip install -r requirements.txt
+          pip install -r requirements_test.txt
+      - name: Run lints
+        run: |
+          flake8 --config=flake8.ini ./staking_deposit ./tests
+          mypy --config-file mypy.ini -p staking_deposit
+      - name: Run tests
+        run: pytest
+
   build-docker:
+    needs: build-test
     permissions:
       contents: "read"
       id-token: "write"
@@ -73,8 +96,9 @@ jobs:
             ${{ env.DOCKER_REGISTRY }}/${{ env.DOCKER_IMAGE_NAME }}:${{ inputs.sha }}
             ${{ env.DOCKER_REGISTRY }}/${{ env.DOCKER_IMAGE_NAME }}:${{ inputs.tag_name }}
             ${{ env.DOCKER_REGISTRY }}/${{ env.DOCKER_IMAGE_NAME }}:latest
-
+    
   build-native:
+    needs: build-test
     runs-on: ${{ matrix.runner }}
     strategy:
       fail-fast: false
