@@ -148,8 +148,6 @@ You can use `new-mnemonic --help` to see all arguments. Note that if there are m
 | `--mnemonic_language` | String. Options: `简体中文`, `繁體中文`, `český jazyk`, `English`, `Italiano`, `한국어`, `Português`, `Español`. Default to `English` | The mnemonic language                                                                                                                                                                                                                |
 | `--folder`            | String. Pointing to `./validator_keys` by default                                                                                     | The folder path for the keystore(s) and deposit(s)                                                                                                                                                                                   |
 | `--chain`             | String. `lukso` by default                                                                                                            | The chain setting for the signing domain. `lukso`: LUKSO mainnet, `lukso-testnet`: LUKSO testnet, `lukso-devnet`: LUKSO devnet, `ethereum`: Ethereum Mainnet, `ropsten`: Ropsten, `goerli`, `prater`: Goerli, `kiln`: Merge Testnet (spec v1.1.9), or `sepolia`: Sepolia |
-
-|
 | `--execution_address` (or `--eth1_withdrawal_address`) | String. LUKSO address (Eth1 adddress) in hexadecimal encoded form | If this field is set and valid, the given LUKSO address (Eth1 address) will be used to create the withdrawal credentials. Otherwise, it will generate withdrawal credentials with the mnemonic-derived withdrawal public key in [EIP-2334 format](https://eips.ethereum.org/EIPS/eip-2334#eth2-specific-parameters). |
 
 ###### `existing-mnemonic` Arguments
