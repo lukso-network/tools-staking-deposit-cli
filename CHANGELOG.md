@@ -1,5 +1,13 @@
 # Changelog
 
+## [2.5.7](https://github.com/lukso-network/tools-key-gen-cli/compare/v2.5.6...v2.5.7) (2024-03-14)
+
+
+### Bug Fixes
+
+* Add manual tests and lints into github actions ([#40](https://github.com/lukso-network/tools-key-gen-cli/issues/40)) ([a6178d5](https://github.com/lukso-network/tools-key-gen-cli/commit/a6178d5f43809816763c8e00a59fa82a3b8821f6))
+* Improve argument processing and revert click version ([#38](https://github.com/lukso-network/tools-key-gen-cli/issues/38)) ([1197b4b](https://github.com/lukso-network/tools-key-gen-cli/commit/1197b4b4005fd4694ce613b37b399d6124b77887))
+
 ## [2.5.6](https://github.com/lukso-network/tools-key-gen-cli/compare/v2.5.5...v2.5.6) (2023-08-21)
 
 
