@@ -81,6 +81,16 @@ def get_first_options(options: Mapping[str, Sequence[str]]) -> List[str]:
     return list(map(lambda x: x[0], options.values()))
 
 
+def exact_match(text: str, options: Iterable[str]) -> str:
+    '''
+    Finds the closest match to `text` in the `options_list`
+    '''
+    match = difflib.get_close_matches(text, options, n=1, cutoff=1.0)
+    if len(match) == 0:
+        raise ValidationError('%s is not a valid chain/network option' % text)
+    return match[0]
+
+
 def closest_match(text: str, options: Iterable[str]) -> str:
     '''
     Finds the closest match to `text` in the `options_list`

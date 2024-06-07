@@ -30,12 +30,12 @@ from staking_deposit.utils.click import (
 )
 from staking_deposit.exceptions import ValidationError
 from staking_deposit.utils.intl import (
-    closest_match,
+    exact_match,
     load_text,
 )
 from staking_deposit.settings import (
     ALL_CHAINS,
-    MAINNET,
+    LUKSO,
     PRATER,
     get_chain_setting,
     get_devnet_chain_setting,
@@ -63,13 +63,13 @@ FUNC_NAME = 'generate_bls_to_execution_change'
 )
 @jit_option(
     callback=captive_prompt_callback(
-        lambda x: closest_match(x, list(ALL_CHAINS.keys())),
+        lambda x: exact_match(x, list(ALL_CHAINS.keys())),
         choice_prompt_func(
             lambda: load_text(['arg_chain', 'prompt'], func=FUNC_NAME),
             list(ALL_CHAINS.keys())
         ),
     ),
-    default=MAINNET,
+    default=LUKSO,
     help=lambda: load_text(['arg_chain', 'help'], func=FUNC_NAME),
     param_decls='--chain',
     prompt=choice_prompt_func(

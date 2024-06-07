@@ -16,7 +16,7 @@ def _value_of(f: Union[Callable[[], Any], Any]) -> Any:
     '''
     If the input, f, is a function, return f(), else return f.
     '''
-    return(f() if callable(f) else f)
+    return (f() if callable(f) else f)
 
 
 class JITOption(click.Option):
@@ -56,9 +56,9 @@ class JITOption(click.Option):
         self.help = _value_of(self.callable_help)
         return super().get_help_record(ctx)
 
-    def get_default(self, ctx: click.Context, call = True) -> Any:
+    def get_default(self, ctx: click.Context) -> Any:
         self.default = _value_of(self.callable_default)
-        return super().get_default(ctx, call=call)
+        return super().get_default(ctx)
 
 
 def jit_option(*args: Any, **kwargs: Any) -> Callable[[Any], Any]:
