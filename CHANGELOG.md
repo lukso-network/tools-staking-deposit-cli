@@ -1,5 +1,12 @@
 # Changelog
 
+## [2.5.8](https://github.com/lukso-network/tools-key-gen-cli/compare/v2.5.7...v2.5.8) (2024-06-07)
+
+
+### Bug Fixes
+
+* Add lukso-mainnet to docs (force build due to failed release-please) ([#42](https://github.com/lukso-network/tools-key-gen-cli/issues/42)) ([c8a6ab7](https://github.com/lukso-network/tools-key-gen-cli/commit/c8a6ab7e80afe0ff90be4f6dc8dd49dcfbce5652))
+
 ## [2.5.7](https://github.com/lukso-network/tools-key-gen-cli/compare/v2.5.6...v2.5.7) (2024-03-14)
 
 
